@@ -1,7 +1,7 @@
 <div>
   <% @problems.each do |problem| %>
     <p>悩み:
-      <%= problem.title %>
+      <%= link_to "#{problem.title}",problem_path(problem.id) %>
     </p>
   <% end %>
 </div>

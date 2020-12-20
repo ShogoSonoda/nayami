@@ -1,5 +1,5 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:edit, :update]
+  before_action :set_problem, only: [:show, :edit, :update, :destroy]
 
   def index
     @problems = Problem.includes(:user).order("created_at DESC")
@@ -16,6 +16,10 @@ class ProblemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    
   end
 
   def edit

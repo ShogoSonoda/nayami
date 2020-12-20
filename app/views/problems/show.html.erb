@@ -1,0 +1,5 @@
+<%= link_to "編集", edit_problem_path(@problem.id), method: :get %>
+<%= link_to "削除", problem_path(@problem.id), method: :delete %>
+
+<h1><%= @problem.title %></h1>
+<p><%= @problem.text %></p>
