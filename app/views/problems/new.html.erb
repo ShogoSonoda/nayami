@@ -1,4 +1,5 @@
-<%= form_with model: @problem do |f| %>
+<%= form_with model: @problem, local: true do |f| %>
+<%= render 'shared/error_messages', model: @problem %>
   <%= f.text_field :title, placeholder:"タイトル" %>
   <%= f.text_area :text, placeholder:"テキスト" %>
   <%= f.submit "投稿" %>
