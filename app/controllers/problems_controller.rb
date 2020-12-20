@@ -1,5 +1,7 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_problem, only: [:show, :edit, :update, :destroy, :user_check]
+  before_action :user_check, only: [:edit, :update, :destroy]
 
   def index
     @problems = Problem.includes(:user).order("created_at DESC")
@@ -46,5 +48,11 @@ class ProblemsController < ApplicationController
 
   def set_problem
     @problem = Problem.find(params[:id])
+  end
+
+  def user_check
+    if current_user.id != @problem.user_id
+      redirect_to root_path
+    end
   end
 end
