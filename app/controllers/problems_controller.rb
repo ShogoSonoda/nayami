@@ -1,5 +1,6 @@
 class ProblemsController < ApplicationController
   def index
+    @problems = Problem.includes(:user).order("created_at DESC")
   end
 
   def new
