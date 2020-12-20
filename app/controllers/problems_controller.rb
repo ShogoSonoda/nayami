@@ -34,6 +34,11 @@ class ProblemsController < ApplicationController
     end
   end
 
+  def destroy
+    @problem.destroy
+    redirect_to root_path
+  end
+
   private
   def problem_params
     params.require(:problem).permit(:title, :text).merge(user_id: current_user.id)
