@@ -15,7 +15,9 @@
 
 <% if @answers %>
   <% @answers.each do |answer| %>
-    <strong><%= answer.user.name %></strong>:
-    <%= answer.text %>
+    <p>
+      <strong><%= answer.user.name %></strong>:
+      <%= answer.text %>
+    </p>
   <% end %>
 <% end %>
