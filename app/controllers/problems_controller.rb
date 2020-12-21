@@ -21,7 +21,8 @@ class ProblemsController < ApplicationController
   end
 
   def show
-    
+    @answer = Answer.new
+    @answers = @problem.answers.includes(:user)
   end
 
   def edit

@@ -12,3 +12,10 @@
     <%= f.submit "投稿" %>
   <% end %>
 <% end %>
+
+<% if @answers %>
+  <% @answers.each do |answer| %>
+    <strong><%= answer.user.name %></strong>:
+    <%= answer.text %>
+  <% end %>
+<% end %>
