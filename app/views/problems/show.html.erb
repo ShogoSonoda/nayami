@@ -1,0 +1,7 @@
+<% if user_signed_in? && current_user.id == @problem.user_id %>
+  <%= link_to "編集", edit_problem_path(@problem.id), method: :get %>
+  <%= link_to "削除", problem_path(@problem.id), method: :delete %>
+<% end %>
+
+<h1><%= @problem.title %></h1>
+<p><%= @problem.text %></p>
