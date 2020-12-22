@@ -1,4 +1,8 @@
 class RoomsController < ApplicationController
+  def index
+    @rooms = Room.all
+  end
+  
   def new
     @room = Room.new
   end
@@ -7,7 +11,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.user_ids = current_user.id
     if @room.save
-      redirect_to root_path
+      redirect_to rooms_path
     else
       render :new
     end
