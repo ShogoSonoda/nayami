@@ -1,0 +1,5 @@
+<h1>チャットルームを作る</h1>
+<%= form_with model: @room, local: true do |f| %>
+  <%= f.text_field :name, placeholder:"ルーム名" %>
+  <%= f.submit "ルーム作成" %>
+<% end %>
