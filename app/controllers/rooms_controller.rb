@@ -2,6 +2,10 @@ class RoomsController < ApplicationController
   def index
     @rooms = Room.all
   end
+
+  def show
+    
+  end
   
   def new
     @room = Room.new
@@ -15,10 +19,6 @@ class RoomsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-    
   end
 
   private
