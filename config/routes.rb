@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   resources :problems do
     resources :answers, only: [:create]
   end
-  resources :rooms, only: [:index, :show, :new, :create]
+  resources :rooms, only: [:index, :show, :new, :create]　do
+    resources :messages, only: [:index, :create]
+  end
 end
