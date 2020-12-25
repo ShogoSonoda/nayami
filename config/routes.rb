@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
   get 'messages/index'
   get 'messages/create'
   root to: 'problems#index'
