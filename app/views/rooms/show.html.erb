@@ -1,0 +1,13 @@
+<h1><%= @room.name %></h1>
+
+<%= form_with model: [@room, @message], local: true do |f| %>
+  <%= f.text_field :content, placeholder: "メッセージを入力して下さい" %>
+  <%= f.submit "送信" %>
+<% end %>
+
+<% @messages.each do |message| %>
+  <p>
+    <strong><%= message.user.name %></strong>:
+    <%= message.content %>
+  </p>
+<% end %>

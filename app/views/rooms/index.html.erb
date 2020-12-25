@@ -1,0 +1,6 @@
+<h1>チャットルーム一覧</h1>
+<% @rooms.each do |room| %>
+  <p><%= link_to "#{room.name}", room_path(room.id) %></p>
+<% end %>
+
+<h2><%= link_to "チャットルーム新規作成", new_room_path %></h2>
