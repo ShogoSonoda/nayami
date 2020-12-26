@@ -4,6 +4,7 @@
 <% end %>
 
 <h1><%= @problem.title %></h1>
+<h2>投稿者:<%= link_to "#{@problem.user.name}", user_path(@problem.user.id) %></h2>
 <p><%= @problem.text %></p>
 
 <% if user_signed_in? %>
