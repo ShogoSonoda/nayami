@@ -7,7 +7,7 @@
 
 <% @messages.each do |message| %>
   <p>
-    <strong><%= message.user.name %></strong>:
+    <strong><%= link_to "#{message.user.name}", user_path(message.user.id) %></strong>:
     <%= message.content %>
   </p>
 <% end %>

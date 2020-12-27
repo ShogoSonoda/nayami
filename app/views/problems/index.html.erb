@@ -1,6 +1,6 @@
 <div>
   <% @problems.each do |problem| %>
-    <p><%= problem.user.name %>の悩み:
+    <p><%= link_to "#{problem.user.name}", user_path(problem.user.id) %>の悩み:
       <%= link_to "#{problem.title}",problem_path(problem.id) %>
     </p>
   <% end %>

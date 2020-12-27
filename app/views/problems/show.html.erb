@@ -1,10 +1,11 @@
-<% if user_signed_in? && current_user.id == @problem.user_id %>
-  <%= link_to "編集", edit_problem_path(@problem.id), method: :get %>
-  <%= link_to "削除", problem_path(@problem.id), method: :delete %>
-<% end %>
-
 <h1><%= @problem.title %></h1>
 <h2>投稿者:<%= link_to "#{@problem.user.name}", user_path(@problem.user.id) %></h2>
+<% if user_signed_in? && current_user.id == @problem.user_id %>
+  <ul>
+    <li><%= link_to "編集", edit_problem_path(@problem.id), method: :get %></li>
+    <li><%= link_to "削除", problem_path(@problem.id), method: :delete %></li>
+  </ul>
+<% end %>
 <p><%= @problem.text %></p>
 
 <% if user_signed_in? %>
@@ -16,9 +17,7 @@
 
 <% if @answers %>
   <% @answers.each do |answer| %>
-    <p>
-      <strong><%= answer.user.name %></strong>:
-      <%= answer.text %>
-    </p>
+    <h3>投稿者:<%= link_to "#{answer.user.name}", user_path(answer.user.id) %></h3>
+    <p><%= answer.text %></p>
   <% end %>
 <% end %>
