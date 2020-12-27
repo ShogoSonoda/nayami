@@ -1,6 +1,13 @@
 <h1>チャットルーム一覧</h1>
 <% @rooms.each do |room| %>
-  <p><%= link_to "#{room.name}", room_path(room.id) %></p>
+  <p>
+    <%= link_to "#{room.name}", room_path(room.id) %>
+    <% if room.room_user_by?(current_user) %>
+      <%= link_to "退会する", room_room_users_path(room.id), method: :delete %>
+    <% else %>
+      <%= link_to "参加する", room_room_users_path(room.id), method: :post %>
+    <% end %>
+  </p>
 <% end %>
 
 <h2><%= link_to "チャットルーム新規作成", new_room_path %></h2>

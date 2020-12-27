@@ -10,3 +10,7 @@
 
 <p><%= link_to "フォロー", follows_user_path(@user.id) %></p>
 <p><%= link_to "フォロワー", followers_user_path(@user.id) %></p>
+<h2>参加しているルーム</h2>
+<% @rooms.each do |room| %>
+  <%= link_to "#{room.name}", room_path(room.id) %>
+<% end %>
