@@ -12,9 +12,11 @@ Rails.application.routes.draw do
     resource :room_users, only: [:create, :destroy]
   end
 
-  resources :users do
+  resources :users, only: [:show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
     get :followers, on: :member
   end
+
+  get '/mypage' => 'users#mypage'
 end

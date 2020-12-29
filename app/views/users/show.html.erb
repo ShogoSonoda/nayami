@@ -1,8 +1,14 @@
-<h1><%= @user.name %>の詳細ページ</h1>
-<% if @user.profile.image.attached? %>
-  <%= image_tag @user.profile.image.variant(resize: '100x100') %>
+<% if user_signed_in? && @user == current_user %>
+  <h1>マイページ</h1>
+<% else %>
+  <h1>ユーザーページ</h1>
 <% end %>
-<%= link_to "プロフィール編集", edit_user_profiles_path(@user.id) %>
+
+<h1><%= @user.name %></h1>
+
+<% if user_signed_in? && @user == current_user %>
+  <%= link_to "プロフィール編集", edit_user_path(current_user) %>
+<% end %>
 
 <% if current_user != @user %>
   <% if @user.followed_by?(current_user) %>

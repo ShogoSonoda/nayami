@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:mypage, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :follows, :followers]
 
-  def index
-    @users = User.all
+  def mypage
+    redirect_to user_path(current_user)
   end
 
   def show
@@ -10,37 +11,34 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if @user.profile.present?
-      @profile = Profile.find(params[:id])
-    else
-      @profile = Profile.new
+    unless @user == current_user
+      redirect_to user_path(@user)
     end
   end
 
   def update
-    if @user.profile.update(profile_params)
-      redirect_to user_path(current_user.id)
+    binding.pry
+    if current_user.update(user_params)
+      redirect_to user_path(current_user)
     else
-      render :edit
+      redirect_to edit_user_path(current_user)
     end
   end
 
   def follows
-    @user = User.find(params[:id])
     @users = @user.followings
   end
 
   def followers
-    @user = User.find(params[:id])
     @users = @user.followers
   end
 
   private
-  def profile_params
-    params.require(:profile).permit(:project, :occupation, :position, :introduction).merge(user_id: current_user.id)
-  end
-
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.fetch(:user, {}).permit(:name)
   end
 end
