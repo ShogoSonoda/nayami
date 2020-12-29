@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_27_215254) do
+ActiveRecord::Schema.define(version: 2020_12_29_212355) do
 
   create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text", null: false
@@ -72,6 +72,10 @@ ActiveRecord::Schema.define(version: 2020_12_27_215254) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.integer "industry_id"
+    t.integer "occupation_id"
+    t.integer "position_id"
+    t.text "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -79,7 +83,6 @@ ActiveRecord::Schema.define(version: 2020_12_27_215254) do
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "problems", "users"
-  add_foreign_key "profiles", "users"
   add_foreign_key "room_users", "rooms"
   add_foreign_key "room_users", "users"
 end

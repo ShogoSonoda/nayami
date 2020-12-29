@@ -3,6 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :industry
+
   has_many :problems
   has_many :answers
 
@@ -19,9 +23,10 @@ class User < ApplicationRecord
 
   has_one :profile
 
+  validates :name, presence: true
+  validates :industry_id, numericality: { other_than: 1 }
+
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end
-
-  validates :name, presence: true
 end
