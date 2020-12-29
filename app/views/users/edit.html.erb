@@ -4,5 +4,8 @@
   <%= f.text_field :name %>
   <%= f.email_field :email %>
   <%= f.collection_select(:industry_id, Industry.all, :id, :name, {}, {class:""}) %>
+  <%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {class:""}) %>
+  <%= f.collection_select(:position_id, Position.all, :id, :name, {}, {class:""}) %>
+  <%= f.text_area :introduction %>
   <%= f.submit "保存" %>
 <% end %>

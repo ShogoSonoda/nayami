@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :industry
+  belongs_to :occupation
+  belongs_to :position
 
   has_many :problems
   has_many :answers
@@ -25,6 +27,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :industry_id, numericality: { other_than: 1 }
+  validates :occupation_id, numericality: { other_than: 1 }
+  validates :position_id, numericality: { other_than: 1 }
 
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
