@@ -1,20 +1,27 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update]
+
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
     @rooms = @user.rooms
   end
 
   def edit
-    @profile = Profile.find(params[:id])
+    if @user.profile.present?
+      @profile = Profile.find(params[:id])
+    else
+      @profile = Profile.new
+    end
   end
 
   def update
-    if @profile.update()
-      
+    if @user.profile.update(profile_params)
+      redirect_to user_path(current_user.id)
+    else
+      render :edit
     end
   end
 
@@ -31,5 +38,9 @@ class UsersController < ApplicationController
   private
   def profile_params
     params.require(:profile).permit(:project, :occupation, :position, :introduction).merge(user_id: current_user.id)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
