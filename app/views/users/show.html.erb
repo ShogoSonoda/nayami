@@ -4,7 +4,12 @@
   <h1>ユーザーページ</h1>
 <% end %>
 
-<h1><%= @user.name %></h1>
+<h1>
+<% if @user.image? %>
+  <%= image_tag @user.image.thumb100.url %>
+<% end %>
+  <%= @user.name %>
+</h1>
 
 <% if user_signed_in? && @user == current_user %>
   <%= link_to "プロフィール編集", edit_user_path(current_user) %>

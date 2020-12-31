@@ -30,6 +30,8 @@ class User < ApplicationRecord
   validates :occupation_id, numericality: { other_than: 1 }
   validates :position_id, numericality: { other_than: 1 }
 
+  mount_uploader :image, ImageUploader
+
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end

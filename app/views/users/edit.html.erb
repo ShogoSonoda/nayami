@@ -7,5 +7,6 @@
   <%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {class:""}) %>
   <%= f.collection_select(:position_id, Position.all, :id, :name, {}, {class:""}) %>
   <%= f.text_area :introduction %>
+  <%= f.file_field :image %>
   <%= f.submit "保存" %>
 <% end %>
