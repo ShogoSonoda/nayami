@@ -7,6 +7,8 @@
 <h1>
 <% if @user.image? %>
   <%= image_tag @user.image.thumb100.url %>
+<% else %>
+  <%= image_tag "default.png" %>
 <% end %>
   <%= @user.name %>
 </h1>
@@ -23,8 +25,34 @@
   <% end %>
 <% end %>
 
+
 <p><%= link_to "フォロー", follows_user_path(@user.id) %></p>
 <p><%= link_to "フォロワー", followers_user_path(@user.id) %></p>
+
+<% if @user.industry %>
+  <p>業種: <%= @user.industry.name %></p>
+<% else %>
+  <p>業種: 未登録</p>
+<% end %>
+
+<% if @user.occupation %>
+  <p>職種: <%= @user.occupation.name %></p>
+<% else %>
+  <p>職種: 未登録</p>
+<% end %>
+
+<% if @user.position %>
+  <p>役職: <%= @user.position.name %></p>
+<% else %>
+  <p>役職: 未登録</p>
+<% end %>
+
+<% if @user.introduction %>
+  <p><%= @user.introduction %></p>
+<% else %>
+  <p>なし</p>
+<% end %>
+
 <h2>参加しているルーム</h2>
 <% @rooms.each do |room| %>
   <%= link_to "#{room.name}", room_path(room.id) %>
