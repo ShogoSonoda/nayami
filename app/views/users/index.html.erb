@@ -1,0 +1,11 @@
+<%= search_form_for @p, url: users_searchuser_path do |f| %>
+  <%= f.label '名前' %>
+  <%= f.search_field :name_cont %>
+  <%= f.label '業種' %>
+  <%= f.collection_select :industry_id_eq, Industry.all, :id, :name, include_blank: '指定なし' %>
+  <%= f.label '職種' %>
+  <%= f.collection_select :occupation_id_eq, Occupation.all, :id, :name, include_blank: '指定なし' %>
+  <%= f.label '役職' %>
+  <%= f.collection_select :position_id_eq, Position.all, :id, :name, include_blank: '指定なし' %>
+  <%= f.submit '検索' %>
+<% end %>
