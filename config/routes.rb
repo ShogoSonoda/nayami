@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     resource :room_users, only: [:create, :destroy]
   end
 
-  resources :users, only: [:show, :edit, :update] do
+  get '/users/searchuser', to: 'users#search_user'
+  resources :users do
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
     get :followers, on: :member

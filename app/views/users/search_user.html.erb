@@ -1,0 +1,11 @@
+<h1>検索結果</h1>
+
+<% if @results.length !=0 %>
+  <% @results.each do |user| %>
+    <% if user %>
+      <%= link_to user_path(user.id) do %>
+        <p><%= user.name %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
