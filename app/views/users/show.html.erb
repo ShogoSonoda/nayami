@@ -1,59 +1,77 @@
-<% if user_signed_in? && @user == current_user %>
-  <h1>マイページ</h1>
-<% else %>
-  <h1>ユーザーページ</h1>
-<% end %>
+<div class="container">
+  <div class="card mx-auto my-5" style="width: 18rem;">
+    <% if @user.image? %>
+      <%= image_tag @user.image.thumb100.url, class: "card-img-top" %>
+    <% else %>
+      <%= image_tag "default.png", class: "card-img-top" %>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= @user.name %></h5>
+      <p class="card-text">
+        <% if @user.introduction != "" %>
+          <%= @user.introduction %>
+        <% else %>
+          未記入
+        <% end %>
+      </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <% if current_user != @user %>
+        <li class="list-group-item">
+          <% if @user.followed_by?(current_user) %>
+            <%= link_to "フォロー済み", user_relationships_path(@user.id), method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
+          <% end %>
+        </li>
+      <% end %>
+      <li class="list-group-item">
+        <%= link_to "フォロー", follows_user_path(@user.id) %>
+      </li>
+      <li class="list-group-item">
+        <%= link_to "フォロワー", followers_user_path(@user.id) %>
+      </li>
+      <li class="list-group-item">
+        <% if @user.industry %>
+          業種: <%= @user.industry.name %>
+        <% else %>
+          業種: 未登録
+        <% end %>
+      </li>
+      <li class="list-group-item">
+        <% if @user.occupation %>
+          職種: <%= @user.occupation.name %>
+        <% else %>
+          職種: 未登録
+        <% end %>
+      </li>
+      <li class="list-group-item">
+        <% if @user.position %>
+          役職: <%= @user.position.name %>
+        <% else %>
+          役職: 未登録
+        <% end %>
+      </li>
+    </ul>
+    <% if user_signed_in? && @user == current_user %>
+      <div class="card-body">
+        <%= link_to "プロフィール編集", edit_user_path(current_user), {class: "card-link"} %>
+      </div>
+    <% end %>
+  </div>
 
-<h1>
-<% if @user.image? %>
-  <%= image_tag @user.image.thumb100.url %>
-<% else %>
-  <%= image_tag "default.png" %>
-<% end %>
-  <%= @user.name %>
-</h1>
-
-<% if user_signed_in? && @user == current_user %>
-  <%= link_to "プロフィール編集", edit_user_path(current_user) %>
-<% end %>
-
-<% if current_user != @user %>
-  <% if @user.followed_by?(current_user) %>
-    <p><%= link_to "フォロー済み", user_relationships_path(@user.id), method: :delete %></p>
-  <% else %>
-    <p><%= link_to "フォローする", user_relationships_path(@user.id), method: :post %></p>
-  <% end %>
-<% end %>
-
-
-<p><%= link_to "フォロー", follows_user_path(@user.id) %></p>
-<p><%= link_to "フォロワー", followers_user_path(@user.id) %></p>
-
-<% if @user.industry %>
-  <p>業種: <%= @user.industry.name %></p>
-<% else %>
-  <p>業種: 未登録</p>
-<% end %>
-
-<% if @user.occupation %>
-  <p>職種: <%= @user.occupation.name %></p>
-<% else %>
-  <p>職種: 未登録</p>
-<% end %>
-
-<% if @user.position %>
-  <p>役職: <%= @user.position.name %></p>
-<% else %>
-  <p>役職: 未登録</p>
-<% end %>
-
-<% if @user.introduction %>
-  <p><%= @user.introduction %></p>
-<% else %>
-  <p>なし</p>
-<% end %>
-
-<h2>参加しているルーム</h2>
-<% @rooms.each do |room| %>
-  <%= link_to "#{room.name}", room_path(room.id) %>
-<% end %>
+  <div class="card w-75 mx-auto mb-5">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item active" aria-current="true">参加しているルーム</a>
+      <% if @rooms.present? %>
+        <% @rooms.each do |room| %>
+          <li class="list-group-item list-group-item-action">
+            <%= link_to "#{room.name}", room_path(room.id) %>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="list-group-item" >なし</li>
+      <% end %>
+    </ul>
+  </div>
+</div>
