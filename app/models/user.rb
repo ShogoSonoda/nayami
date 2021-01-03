@@ -26,9 +26,9 @@ class User < ApplicationRecord
   has_one :profile
 
   validates :name, presence: true
-  validates :industry_id, numericality: { other_than: 1 }
-  validates :occupation_id, numericality: { other_than: 1 }
-  validates :position_id, numericality: { other_than: 1 }
+  # validates :industry_id, numericality: { other_than: 1 }
+  # validates :occupation_id, numericality: { other_than: 1 }
+  # validates :position_id, numericality: { other_than: 1 }
 
   mount_uploader :image, ImageUploader
 
