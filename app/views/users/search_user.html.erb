@@ -1,11 +1,16 @@
-<h1>検索結果</h1>
-
-<% if @results.length !=0 %>
-  <% @results.each do |user| %>
-    <% if user %>
-      <%= link_to user_path(user.id) do %>
-        <p><%= user.name %></p>
+<div class="container">
+  <div class="card mx-auto my-5" style="width: 18rem;">
+    <ul class="list-group">
+      <li class="list-group-item active">検索結果</li>
+      <% if @results.length !=0 %>
+        <% @results.each do |user| %>
+          <% if user %>
+            <%= link_to user_path(user.id) do %>
+              <li class="list-group-item"><%= user.name %></li>
+            <% end %>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end %>
-<% end %>
+    </ul>
+  </div>
+</div>
