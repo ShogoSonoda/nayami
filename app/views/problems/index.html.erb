@@ -1,7 +1,12 @@
-<div>
-  <% @problems.each do |problem| %>
-    <p><%= link_to "#{problem.user.name}", user_path(problem.user.id) %>の悩み:
-      <%= link_to "#{problem.title}",problem_path(problem.id) %>
-    </p>
-  <% end %>
+<div class="container">
+  <div class="card my-5">
+    <ul class="list-group">
+      <li class="list-group-item active" aria-current="true">悩み投稿一覧</li>
+      <% @problems.each do |problem| %>
+        <%= link_to problem_path(problem.id) do %>
+          <li class="list-group-item"><%= problem.title %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 </div>
