@@ -18,22 +18,22 @@
           <%= f.text_area :introduction, {class:"form-control", rows: "3"} %>
         </div>
         <div class="input-group mb-3">
-          <label class="input-group-text">業界</label>
+          <label class="input-group-text">業種</label>
           <%= f.collection_select(:industry_id, Industry.all, :id, :name, {}, {class:"form-select"}) %>
         </div>
         <div class="input-group mb-3">
-          <label class="input-group-text">業種</label>
+          <label class="input-group-text">職種</label>
           <%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {class:"form-select"}) %>
         </div>
         <div class="input-group mb-3">
-          <label class="input-group-text">職種</label>
+          <label class="input-group-text">役職</label>
           <%= f.collection_select(:position_id, Position.all, :id, :name, {}, {class:"form-select"}) %>
         </div>
         <div class="input-group mb-3">
           <label class="input-group-text">画像</label>
           <%= f.file_field :image, class: "form-control" %>
         </div>
-        <div class="">
+        <div class="mb-3">
           <%= f.submit "保存", {class: "btn btn-primary"} %>
         </div>
       <% end %>
