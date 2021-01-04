@@ -1,6 +1,6 @@
 class Position < ActiveHash::Base
   self.data = [
-    {id: 1, name: '--'},
+    # {id: 1, name: '--'},
     {id: 2, name: '一般社員'},
     {id: 3, name: '主任'},
     {id: 4, name: '係長'},

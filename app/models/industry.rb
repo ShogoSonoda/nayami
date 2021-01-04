@@ -1,6 +1,6 @@
 class Industry < ActiveHash::Base
   self.data = [
-    {id: 1, name: '--'},
+    # {id: 1, name: '--'},
     {id: 2, name: 'メーカー'},
     {id: 3, name: 'サービス・インフラ'},
     {id: 4, name: '商社(総合・専門)'},
