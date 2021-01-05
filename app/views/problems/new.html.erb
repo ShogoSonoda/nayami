@@ -1,5 +1,8 @@
 <div class="container">
   <div class="card my-5">
+    <div class="card-header">
+      悩み新規投稿
+    </div>
     <div class="card-body">
       <%= form_with model: @problem, local: true do |f| %>
         <%= render 'shared/error_messages', model: @problem %>
