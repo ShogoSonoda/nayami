@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="card mx-auto my-5">
+    <ul class="list-group">
+      <li class="list-group-item active">検索結果</li>
+      <% if @results.length !=0 %>
+        <% @results.each do |problem| %>
+          <% if problem %>
+            <%= link_to problem_path(problem.id) do %>
+              <li class="list-group-item"><%= problem.title %></li>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
