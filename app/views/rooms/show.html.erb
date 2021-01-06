@@ -1,13 +1,27 @@
-<h1><%= @room.name %></h1>
+<div class="container">
+  <h1><%= @room.name %></h1>
+  <div class="overflow-scroll">
+    <% @messages.each do |message| %>
+      <div class="card mt-3" style="width: 18rem;">
+        <div class="card-body">
+          <%= link_to user_path(message.user.id) do %>
+            <h5 class="card-title"><%= message.user.name %></h5>
+          <% end %>
+          <h6 class="card-subtitle mb-2 text-muted"><%= message.created_at %></h6>
+          <p class="card-text"><%= message.content %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<%= form_with model: [@room, @message], local: true do |f| %>
-  <%= f.text_field :content, placeholder: "メッセージを入力して下さい" %>
-  <%= f.submit "送信" %>
-<% end %>
-
-<% @messages.each do |message| %>
-  <p>
-    <strong><%= link_to "#{message.user.name}", user_path(message.user.id) %></strong>:
-    <%= message.content %>
-  </p>
-<% end %>
+  <%= form_with model: [@room, @message], local: true do |f| %>
+    <div class="row my-5 border p-3">
+      <div class="col-10">
+        <%= f.text_field :content, placeholder: "メッセージを入力して下さい", class: "form-control" %>
+      </div>
+      <div class="col-2 text-center">
+        <%= f.submit "送信", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
