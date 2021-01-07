@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card mt-5">
+  <div class="card">
     <div class="card-body">
       <h5 class="card-title"><%= @problem.title %></h5>
       <%= link_to user_path(@problem.user.id) do %>
@@ -14,7 +14,7 @@
   </div>
 
   <% if user_signed_in? %>
-    <div class="card mt-5">
+    <div class="card mt-3">
       <div class="card-body">
         <h5 class="card-title">回答</h5>
         <%= form_with(model: [@problem, @answer], local: true) do |f| %>
@@ -31,7 +31,7 @@
   <% end %>
 
   <% if @answers.present? %>
-    <div class="card my-5">
+    <div class="card mt-3">
       <div class="card-body">
         <% @answers.each do |answer| %>
           <%= link_to user_path(answer.user.id) do %>

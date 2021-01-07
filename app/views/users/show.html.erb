@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card mx-auto mt-5" style="width: 18rem;">
+  <div class="card mx-auto" style="width: 18rem;">
     <% if @user.image? %>
       <%= image_tag @user.image.thumb100.url, class: "card-img-top" %>
     <% else %>
@@ -7,7 +7,7 @@
     <% end %>
   </div>
 
-  <div class="card mt-5">
+  <div class="card mt-3">
     <div class="card-body">
       <h5 class="card-title"><%= @user.name %></h5>
       <p class="card-text">
@@ -63,7 +63,7 @@
     <% end %>
   </div>
 
-  <div class="card mx-auto my-5">
+  <div class="card mx-auto mt-3">
     <ul class="list-group list-group-flush">
       <li class="list-group-item active" aria-current="true">参加しているルーム</a>
       <% if @rooms.present? %>

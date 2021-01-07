@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>Nayami</title>
     <%= csrf_meta_tags %>
@@ -7,53 +7,65 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+  </head>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <%= link_to "ホーム", root_path, {class: "navbar-brand"} %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to "#{current_user.name}", user_path(current_user.id), {class: "nav-link"} %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", method: :delete %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "新規投稿", new_problem_path, {class: "nav-link"} %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "チャットルーム新規作成", new_room_path, {class: "nav-link"} %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "チャットルーム一覧", rooms_path, {class: "nav-link"} %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ユーザー検索", users_path, {class: "nav-link"} %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to "ログイン", new_user_session_path, {class: "nav-link"} %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "新規登録", new_user_registration_path, {class: "nav-link"} %>
-              </li>
-            <% end %>
-          </ul>
+  <body class="d-flex flex-column h-100">
+    <header>
+      <nav  class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+        <div class="container-fluid">
+          <%= link_to "Nayami", root_path, {class: "navbar-brand"} %>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "#{current_user.name}", user_path(current_user.id), {class: "nav-link"} %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", method: :delete %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新規投稿", new_problem_path, {class: "nav-link"} %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "チャットルーム新規作成", new_room_path, {class: "nav-link"} %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "チャットルーム一覧", rooms_path, {class: "nav-link"} %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ユーザー検索", users_path, {class: "nav-link"} %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_user_session_path, {class: "nav-link"} %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_user_registration_path, {class: "nav-link"} %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
+      </nav>
+    </header>
+
+    <main class="my-5 flex-shrink-0">
+      <div class="container mt-5">
+        <%= yield %>
       </div>
-    </nav>
-    <%= yield %>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container text-center">
+        <span class="text-muted">Nayami.</span>
+      </div>
+    </footer>
   </body>
 </html>
