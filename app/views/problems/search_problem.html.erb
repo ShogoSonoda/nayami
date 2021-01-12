@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="card mx-auto" style="width: 18rem;">
+  <div class="card mx-auto">
     <ul class="list-group">
       <li class="list-group-item active">検索結果</li>
       <% if @results.length !=0 %>
-        <% @results.each do |user| %>
-          <% if user %>
-            <%= link_to user_path(user.id) do %>
-              <li class="list-group-item"><%= user.name %></li>
+        <% @results.each do |problem| %>
+          <% if problem %>
+            <%= link_to problem_path(problem.id) do %>
+              <li class="list-group-item"><%= problem.title %></li>
             <% end %>
           <% end %>
         <% end %>

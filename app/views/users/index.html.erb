@@ -1,11 +1,30 @@
-<%= search_form_for @p, url: users_searchuser_path do |f| %>
-  <%= f.label '名前' %>
-  <%= f.search_field :name_cont %>
-  <%= f.label '業種' %>
-  <%= f.collection_select :industry_id_eq, Industry.all, :id, :name, include_blank: '指定なし' %>
-  <%= f.label '職種' %>
-  <%= f.collection_select :occupation_id_eq, Occupation.all, :id, :name, include_blank: '指定なし' %>
-  <%= f.label '役職' %>
-  <%= f.collection_select :position_id_eq, Position.all, :id, :name, include_blank: '指定なし' %>
-  <%= f.submit '検索' %>
-<% end %>
+<div class="container">
+  <div class="card mx-auto w-75">
+    <div class="card-header">
+      ユーザー検索
+    </div>
+    <div class="card-body">
+      <%= search_form_for @p, url: users_searchuser_path do |f| %>
+        <div class="mb-3">
+          <label class="form-label">名前</label>
+          <%= f.search_field :name_cont, {class:"form-control"} %>
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text">業種</label>
+          <%= f.collection_select(:industry_id_eq, Industry.all, :id, :name, include_blank: '指定なし') %>
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text">職種</label>
+          <%= f.collection_select(:occupation_id_eq, Occupation.all, :id, :name, include_blank: '指定なし') %>
+        </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text">役職</label>
+          <%= f.collection_select(:position_id_eq, Position.all, :id, :name, include_blank: '指定なし') %>
+        </div>
+        <div class="mb-3">
+          <%= f.submit "検索", {class: "btn btn-primary"} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,17 @@
-<h1>チャットルーム一覧</h1>
-<% @rooms.each do |room| %>
-  <p>
-    <%= link_to "#{room.name}", room_path(room.id) %>
-    <% if room.room_user_by?(current_user) %>
-      <%= link_to "退会する", room_room_users_path(room.id), method: :delete %>
-    <% else %>
-      <%= link_to "参加する", room_room_users_path(room.id), method: :post %>
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item active" aria-current="true">チャットルーム一覧</li>
+    <% @rooms.each do |room| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= link_to "#{room.name}", room_path(room.id) %>
+        <span class="">
+          <% if room.room_user_by?(current_user) %>
+            <%= link_to "退会する", room_room_users_path(room.id), method: :delete %>
+          <% else %>
+            <%= link_to "参加する", room_room_users_path(room.id), method: :post %>
+          <% end %>
+        </span>
+      </li>
     <% end %>
-  </p>
-<% end %>
-
-<h2><%= link_to "チャットルーム新規作成", new_room_path %></h2>
+  </ul>
+</div>

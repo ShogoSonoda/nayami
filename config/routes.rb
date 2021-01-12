@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get '/problems/searchproblem', to: 'problems#search_problem'
   resources :problems do
     resources :answers, only: [:create]
   end

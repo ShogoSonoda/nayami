@@ -1,7 +1,22 @@
-<div>
-  <% @problems.each do |problem| %>
-    <p><%= link_to "#{problem.user.name}", user_path(problem.user.id) %>の悩み:
-      <%= link_to "#{problem.title}",problem_path(problem.id) %>
-    </p>
+<div class="container">
+  <%= search_form_for @search, url: problems_searchproblem_path do |f| %>
+    <div class="row">
+      <div class="col text-center">
+        <%= f.label :tiltle_cont, "悩み検索" %>
+        <%= f.search_field :title_cont %>
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      </div>
+    </div>
   <% end %>
+
+  <div class="card mt-3">
+    <ul class="list-group">
+      <li class="list-group-item active" aria-current="true">悩み投稿一覧</li>
+      <% @problems.each do |problem| %>
+        <%= link_to problem_path(problem.id) do %>
+          <li class="list-group-item"><%= problem.title %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 </div>

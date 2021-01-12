@@ -2,6 +2,7 @@ class ProblemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_problem, only: [:show, :edit, :update, :destroy, :user_check]
   before_action :user_check, only: [:edit, :update, :destroy]
+  before_action :create_searching_object, only: [:index, :search_problem]
 
   def index
     @problems = Problem.includes(:user).order("created_at DESC")
@@ -42,6 +43,10 @@ class ProblemsController < ApplicationController
     redirect_to root_path
   end
 
+  def search_problem
+    @results = @search.result
+  end
+
   private
   def problem_params
     params.require(:problem).permit(:title, :text).merge(user_id: current_user.id)
@@ -55,5 +60,9 @@ class ProblemsController < ApplicationController
     if current_user.id != @problem.user_id
       redirect_to root_path
     end
+  end
+
+  def create_searching_object
+    @search = Problem.ransack(params[:q])
   end
 end
