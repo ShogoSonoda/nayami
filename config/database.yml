@@ -51,5 +51,7 @@ test:
 production:
   <<: *default
   database: nayami_production
-  username: nayami
-  password: <%= ENV['NAYAMI_DATABASE_PASSWORD'] %>
+  username: admin
+  password: <%= Rails.application.credentials.db[:password] %>
+  host:     <%= Rails.application.credentials.db[:host] %>
+  port: 3306
