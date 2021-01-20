@@ -13,3 +13,41 @@
  *= require_tree .
  *= require_self
  */
+li {
+  list-style: none;
+  color: black;
+}
+
+.edit-link {
+  text-decoration: none;
+  color: black;
+}
+
+.icn_search {
+  font-family: FontAwesome;
+}
+
+.problem-title {
+  font-weight: 700;
+  color: #4f5050;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.problem-user {
+  color: #4f5050;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.problem-text {
+  color: #333;
+  font-size: 15px;
+}
+
+.card {
+  border: 1px solid #f6f6f6;
+  border-bottom: 3px solid #e8e8e8;
+  box-shadow: 0 2px 6px 0 rgba(60,66,87,.01;
+}

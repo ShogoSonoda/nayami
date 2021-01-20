@@ -1,22 +1,69 @@
 <div class="container">
-  <%= search_form_for @search, url: problems_searchproblem_path do |f| %>
-    <div class="row">
-      <div class="col text-center">
-        <%= f.label :tiltle_cont, "悩み検索" %>
-        <%= f.search_field :title_cont %>
-        <%= f.submit "検索", class: "btn btn-primary" %>
+  <div class="row">
+    <div class="col-3">
+      <ul>
+        <li class="mb-1">
+          <%= link_to root_path, class: "edit-link" do %>
+            <i class="fas fa-home mr-1"></i>HOME
+          <% end %>
+        </li>
+        <li class="mb-1">
+          <%= link_to new_problem_path, class: "edit-link" do %>
+            <i class="fas fa-pen mr-1"></i>お悩み投稿
+          <% end %>
+        </li>
+        <li class="mb-1">
+          <%= link_to rooms_path, class: "edit-link" do %>
+            <i class="fas fa-comments mr-1"></i>お悩みチャット
+          <% end %>
+        </li>
+        <li class="mb-1">
+          <%= link_to users_path, class: "edit-link" do %>
+            <i class="fas fa-search mr-1"></i>ユーザー検索
+          <% end %>
+        </li>
+        <li class="mb-1">
+          <%= link_to followers_user_path(current_user.id), class: "edit-link" do %>
+            <i class="fas fa-users mr-1"></i>フォロワー
+          <% end %>
+        </li>
+        <li class="mb-1">
+          <%= link_to user_path(current_user.id), class: "edit-link" do %>
+            <i class="fas fa-user mr-1"></i>マイページ
+          <% end %>
+        </li>
+    </div>
+
+    <div class="col-9">
+      <div class="row">
+        <% @problems.each do |problem| %>
+          <div class="col-sm-6 mb-2">
+            <div class="card" >
+              <div class="card-body">
+                <%= link_to problem_path(problem.id), class: "edit-link" do %>
+                  <h5 class="card-title problem-title"><%= problem.title %></h5>
+                <% end %>
+                <p class="card-text problem-text"><%= truncate(problem.text, lenghth: 10) %></p>
+                <div class="d-flex justify-content-between">
+                  <%= link_to user_path(problem.user.id), class: "edit-link" do %>
+                    <div>
+                      <span>
+                        <% if problem.user.image? %>
+                          <%= image_tag problem.user.image.thumb30.url %>
+                        <% end %>
+                      </span>
+                      <span class="problem-user">
+                        <%= problem.user.name %>
+                      </span>
+                    </div>
+                  <% end %>
+                  <div><%= time_ago_in_words(problem.created_at) %> ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-  <% end %>
-
-  <div class="card mt-3">
-    <ul class="list-group">
-      <li class="list-group-item active" aria-current="true">悩み投稿一覧</li>
-      <% @problems.each do |problem| %>
-        <%= link_to problem_path(problem.id) do %>
-          <li class="list-group-item"><%= problem.title %></li>
-        <% end %>
-      <% end %>
-    </ul>
   </div>
 </div>

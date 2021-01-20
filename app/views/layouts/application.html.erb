@@ -5,52 +5,34 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   </head>
 
-  <body class="d-flex flex-column h-100">
+  <body class="d-flex flex-column h-100" style="background-color: #99FFCC;">
     <header>
-      <nav  class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <%= link_to "Nayami", root_path, {class: "navbar-brand"} %>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <% if user_signed_in? %>
-                <li class="nav-item">
-                  <%= link_to "#{current_user.name}", user_path(current_user.id), {class: "nav-link"} %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", method: :delete %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "新規投稿", new_problem_path, {class: "nav-link"} %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "チャットルーム新規作成", new_room_path, {class: "nav-link"} %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "チャットルーム一覧", rooms_path, {class: "nav-link"} %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "ユーザー検索", users_path, {class: "nav-link"} %>
-                </li>
-              <% else %>
-                <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path, {class: "nav-link"} %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path, {class: "nav-link"} %>
-                </li>
+          <%= link_to "NAYAMI", root_path, class: "edit-link navbar-brand" %>
+          <div class="d-flex">
+            <div>
+              <%= search_form_for @search, url: problems_searchproblem_path, class: "form-inline" do |f| %>
+                <%= f.search_field :title_cont, placeholder: "悩みを検索", class: "form-control" %>
+                <%= button_tag(type: "submit", class: "btn") do %>
+                  <i class="fas fa-search"></i>
+                <% end %>
               <% end %>
-            </ul>
+            </div>
+            <div class="my-auto ml-3">
+              <%= link_to user_path(current_user.id) do %>
+                <%= image_tag current_user.image.thumb30.url %>
+              <% end %>
+            </div>
           </div>
         </div>
       </nav>
