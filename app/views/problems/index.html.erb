@@ -47,14 +47,14 @@
                 <div class="d-flex justify-content-between">
                   <%= link_to user_path(problem.user.id), class: "edit-link" do %>
                     <div>
-                      <span>
+                      <div class="d-inline">
                         <% if problem.user.image? %>
                           <%= image_tag problem.user.image.thumb30.url %>
                         <% end %>
-                      </span>
-                      <span class="problem-user">
+                      </div>
+                      <div class="problem-user d-inline">
                         <%= problem.user.name %>
-                      </span>
+                      </div>
                     </div>
                   <% end %>
                   <div><%= time_ago_in_words(problem.created_at) %> ago</div>
