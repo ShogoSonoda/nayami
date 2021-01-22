@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get '/problems/searchproblem', to: 'problems#search_problem'
   resources :problems do
-    resources :answers, only: [:create]
+    resources :answers, only: [:new, :create]
   end
 
   resources :rooms, only: [:index, :show, :new, :create] do
