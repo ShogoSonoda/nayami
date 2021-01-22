@@ -1,4 +1,9 @@
 class AnswersController < ApplicationController
+  def new
+    @answer = Answer.new
+    @problem = Problem.find(params[:problem_id])
+  end
+  
   def create
     if answer = Answer.create(answer_params)
       redirect_to problem_path(params[:problem_id])
