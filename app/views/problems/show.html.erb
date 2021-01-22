@@ -1,45 +1,66 @@
 <div class="container">
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title"><%= @problem.title %></h5>
-      <%= link_to user_path(@problem.user.id) do %>
-        <h6 class="card-subtitle mb-2 text-muted"><%= @problem.user.name %></h6>
-      <% end %>
-      <p class="card-text"><%= @problem.text %></p>
+  <div class="row mb-3">
       <% if user_signed_in? && current_user.id == @problem.user_id %>
-        <%= link_to "編集", edit_problem_path(@problem.id), class: "card-link", method: :get %>
-        <%= link_to "削除", problem_path(@problem.id), class: "card-link", method: :delete %>
+        <%= link_to edit_problem_path(@problem.id), class: "edit-link ml-auto", method: :get do %>
+          <i class="fas fa-edit mr-1"></i>投稿した悩みを編集する
+        <% end %>
+      <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      <div class="card text-center p-3">
+        <div>
+          <% if @problem.user.image? %>
+            <%= image_tag @problem.user.image.thumb100.url %>
+          <% end %>
+        </div>
+        <%= link_to user_path(@problem.user.id), class: "edit-link" do %>
+          <p class="user-name mt-2"><%= @problem.user.name %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-9">
+      <div class="card">
+        <div class="card-body">
+          <h3><%= @problem.title %></h3>
+          <p class="card-text"><%= @problem.text %></p>
+        </div>
+      </div>
+
+      <div class="my-5 text-center">
+        <% if user_signed_in? %>
+          <%= link_to "回答する", new_problem_answer_path(params[:id]), class: "edit-link btn" %>
+        <% else %>
+          <%= link_to "ログインして回答する", new_user_session_path, class: "edit-link btn" %>
+        <% end %>
+      </div>
+
+      <% if @answers.present? %>
+        <% @answers.each do |answer| %>
+          <div class="card mt-3">
+            <div class="card-body">
+              <div class="mb-4">
+                <div class="d-inline">
+                  <% if answer.user.image? %>
+                    <%= image_tag answer.user.image.thumb30.url %>
+                  <% end %>
+                </div>
+                <div class="problem-user d-inline">
+                  <%= answer.user.name %>
+                </div>
+                <div class="d-inline">
+                  <%= answer.created_at %>
+                </div>
+              </div>
+              <div>
+                <p class=""><%= answer.text %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
-
-  <% if user_signed_in? %>
-    <div class="card mt-3">
-      <div class="card-body">
-        <h5 class="card-title">回答</h5>
-        <%= form_with(model: [@problem, @answer], local: true) do |f| %>
-          <div class="mb-3">
-            <label class="form-label">回答を入力して下さい</label>
-            <%= f.text_area :text, class: "form-control" %>
-          </div>
-          <div class="mb-3">
-            <%= f.submit "投稿" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
-  <% if @answers.present? %>
-    <div class="card mt-3">
-      <div class="card-body">
-        <% @answers.each do |answer| %>
-          <%= link_to user_path(answer.user.id) do %>
-            <h5 class="card-title"><%= answer.user.name %></h5>
-          <% end %>
-          <p class="card-text"><%= answer.text %></p>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
 </div>
