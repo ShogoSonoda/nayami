@@ -1,0 +1,14 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <h5 class="card-title">回答</h5>
+    <%= form_with(model: [@problem, @answer], local: true) do |f| %>
+      <div class="mb-3">
+        <label class="form-label">回答を入力して下さい</label>
+        <%= f.text_area :text, class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= f.submit "投稿" %>
+      </div>
+    <% end %>
+  </div>
+</div>
