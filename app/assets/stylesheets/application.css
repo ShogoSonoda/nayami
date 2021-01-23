@@ -26,6 +26,11 @@ li {
   color: black;
 }
 
+.card {
+  border: 1px solid #f6f6f6;
+  border-bottom: 3px solid #e8e8e8;
+}
+
 .edit-link {
   text-decoration: none;
   color: black;
@@ -50,4 +55,12 @@ h1,h2,h3,h4,h5,h6 {
 .size85 {
   width: 85px;
   height: 85px;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.body-name {
+  color: #12b1bf;
 }
