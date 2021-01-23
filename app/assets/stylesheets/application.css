@@ -64,3 +64,18 @@ h1,h2,h3,h4,h5,h6 {
 .body-name {
   color: #12b1bf;
 }
+
+.bold {
+  font-weight: 700;
+}
+
+.textarea {
+  width: 100%;
+  height: 300px;
+  border-radius: 4px;
+}
+
+.msg-btn-box {
+  padding: 15px 60px;
+  border-radius: 40px;
+}
