@@ -31,9 +31,9 @@
 
       <div class="my-5 text-center">
         <% if user_signed_in? %>
-          <%= link_to "解決策を送る", new_problem_answer_path(params[:id]), class: "edit-link btn" %>
+          <%= link_to "解決策を送る", new_problem_answer_path(params[:id]), class: "btn" %>
         <% else %>
-          <%= link_to "ログインして解決策を送る", new_user_session_path, class: "edit-link btn" %>
+          <%= link_to "ログインして解決策を送る", new_user_session_path, class: "btn" %>
         <% end %>
       </div>
 
