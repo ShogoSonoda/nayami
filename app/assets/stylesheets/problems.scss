@@ -1,39 +1,3 @@
 // Place all the styles related to the problems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.problem-title {
-  font-weight: 700;
-  color: #4f5050;
-  cursor: pointer;
-  font-size: 17px;
-}
-
-.problem-user {
-  color: #4f5050;
-  cursor: pointer;
-  font-weight: 400;
-  font-size: 15px;
-}
-
-.problem-text {
-  color: #333;
-  font-size: 15px;
-}
-
-.user-name {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.4;
-}
-
-.btn-small {
-  text-align: center;
-  border-radius: 20px;
-  border: 1px solid #13b1c0;
-  color: #13b1c0;
-  text-decoration: none;
-  padding: 4px 10px;
-  background: #fff;
-  cursor: pointer;
-  font-size: 12px;
-}
