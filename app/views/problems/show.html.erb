@@ -11,13 +11,25 @@
     <div class="col-3">
       <div class="card text-center p-3">
         <div>
-          <% if @problem.user.image? %>
-            <%= image_tag @problem.user.image.thumb100.url %>
+          <% if current_user.image? %>
+            <%= image_tag @problem.user.image.url, class: "profile-img size100" %>
+          <% else %>
+            <%= image_tag 'default.png', class: "profile-img size100" %>
           <% end %>
         </div>
         <%= link_to user_path(@problem.user.id), class: "edit-link" do %>
           <p class="user-name mt-2"><%= @problem.user.name %></p>
         <% end %>
+        <% if current_user != @problem.user %>
+          <% if @problem.user.followed_by?(current_user) %>
+            <%= link_to "フォロー解除", user_relationships_path(@problem.user.id), method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(@problem.user.id), method: :post %>
+          <% end %>
+        <% end %>
+        <div>
+
+        </div>
       </div>
     </div>
 
