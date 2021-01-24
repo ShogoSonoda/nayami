@@ -1,32 +1,33 @@
-<div class="container">
-  <div>
-    <h3>悩みを探す</h3>
-  </div>
-  <p><%= @results.length %>個の悩みが見つかりました。</p>
-  <% if @results.length != 0 %>
-    <% @results.each do |problem| %>
-      <% if problem %>
-        <div class="card py-4 px-3 mb-3">
-          <div class="d-flex">
-            <div class="mr-4">
-              <% if problem.user.image? %>
-                <%= image_tag problem.user.image.url, class: "profile-img size85" %>
-              <% else %>
-                <%= image_tag 'default.png', class: "profile-img size85" %>
-              <% end %>
-            </div>
+<div>
+  <h3>検索結果</h3>
+</div>
+<p><%= @results.length %>個の悩みが見つかりました。</p>
+<% if @results.length != 0 %>
+  <% @results.each do |problem| %>
+    <% if problem %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="mb-3">
             <div>
-              <div class="mb-4">
-                <%= link_to "#{problem.user.name}", user_path(problem.user.id), class: "edit-link name body-name" %>
-              </div>
-              <%= link_to problem_path(problem.id) do %>
-                <h6><%= problem.title %></h6>
+              <%= link_to user_path(problem.user.id), class: "edit-link" do %>
+                <div class="d-inline">
+                  <% if problem.user.image? %>
+                    <%= image_tag problem.user.image.url, class: "profile-img size50" %>
+                  <% else %>
+                    <%= image_tag 'default.png', class: "profile-img size50" %>
+                  <% end %>
+                </div>
+                <div class="d-inline user-name">
+                  <%= problem.user.name %>
+                </div>
               <% end %>
-              <p><%= truncate(problem.text, lenghth: 10) %></p>
             </div>
           </div>
+
+          <p><%= problem.created_at %></p>
+          <h5><%= problem.title %></h5>
         </div>
-      <% end %>
+      </div>
     <% end %>
   <% end %>
-</div>
+<% end %>
