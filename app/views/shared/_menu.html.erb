@@ -10,8 +10,13 @@
     <% end %>
   </li>
   <li class="mb-1">
+    <%= link_to new_room_path, class: "edit-link" do %>
+      <i class="fas fa-plus-square mr-1"></i>チャットルーム作成
+    <% end %>
+  </li>
+  <li class="mb-1">
     <%= link_to rooms_path, class: "edit-link" do %>
-      <i class="fas fa-comments mr-1"></i>お悩みチャット
+      <i class="fas fa-comments mr-1"></i>チャットルーム一覧
     <% end %>
   </li>
   <li class="mb-1">
@@ -22,13 +27,13 @@
   
   <% if user_signed_in? %>
     <li class="mb-1">
-      <%= link_to followers_user_path(current_user.id), class: "edit-link" do %>
-        <i class="fas fa-users mr-1"></i>フォロワー
+      <%= link_to user_path(current_user.id), class: "edit-link" do %>
+        <i class="fas fa-user mr-1"></i>マイページ
       <% end %>
     </li>
     <li class="mb-1">
-      <%= link_to user_path(current_user.id), class: "edit-link" do %>
-        <i class="fas fa-user mr-1"></i>マイページ
+      <%= link_to followers_user_path(current_user.id), class: "edit-link" do %>
+        <i class="fas fa-users mr-1"></i>フォロワー
       <% end %>
     </li>
     <li class="mb-1">
