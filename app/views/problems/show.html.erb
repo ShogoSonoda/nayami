@@ -1,78 +1,74 @@
-<div class="container">
-  <div class="row mb-3">
-      <% if user_signed_in? && current_user.id == @problem.user_id %>
-        <%= link_to edit_problem_path(@problem.id), class: "edit-link ml-auto", method: :get do %>
-          <i class="fas fa-edit mr-1"></i>投稿した悩みを編集する
-        <% end %>
-      <% end %>
-  </div>
-
-  <div class="row">
-    <div class="col-3">
-      <div class="card text-center p-3">
-        <div>
-          <% if current_user.image? %>
-            <%= image_tag @problem.user.image.url, class: "profile-img size100" %>
-          <% else %>
-            <%= image_tag 'default.png', class: "profile-img size100" %>
-          <% end %>
-        </div>
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between mb-3">
+      <div>
         <%= link_to user_path(@problem.user.id), class: "edit-link" do %>
-          <p class="user-name mt-2"><%= @problem.user.name %></p>
-        <% end %>
-        <% if current_user != @problem.user %>
-          <% if @problem.user.followed_by?(current_user) %>
-            <%= link_to "フォロー解除", user_relationships_path(@problem.user.id), method: :delete %>
-          <% else %>
-            <%= link_to "フォローする", user_relationships_path(@problem.user.id), method: :post %>
-          <% end %>
-        <% end %>
-        <div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col-9">
-      <div class="card">
-        <div class="card-body">
-          <h3><%= @problem.title %></h3>
-          <p class="card-text"><%= @problem.text %></p>
-        </div>
-      </div>
-
-      <div class="my-5 text-center">
-        <% if user_signed_in? %>
-          <%= link_to "解決策を送る", new_problem_answer_path(params[:id]), class: "btn" %>
-        <% else %>
-          <%= link_to "ログインして解決策を送る", new_user_session_path, class: "btn" %>
-        <% end %>
-      </div>
-
-      <% if @answers.present? %>
-        <% @answers.each do |answer| %>
-          <div class="card mt-3">
-            <div class="card-body">
-              <div class="mb-4">
-                <div class="d-inline">
-                  <% if answer.user.image? %>
-                    <%= image_tag answer.user.image.thumb30.url %>
-                  <% end %>
-                </div>
-                <div class="problem-user d-inline">
-                  <%= answer.user.name %>
-                </div>
-                <div class="d-inline">
-                  <%= answer.created_at %>
-                </div>
-              </div>
-              <div>
-                <p class=""><%= answer.text %></p>
-              </div>
-            </div>
+          <div class="d-inline">
+            <% if @problem.user.image? %>
+              <%= image_tag @problem.user.image.url, class: "profile-img size50" %>
+            <% else %>
+              <%= image_tag 'default.png', class: "profile-img size50" %>
+            <% end %>
+          </div>
+          <div class="d-inline user-name">
+            <%= @problem.user.name %>
           </div>
         <% end %>
-      <% end %>
+      </div>
+      <div>
+        <ul>
+          <li class="d-inline">
+            <%= link_to "編集", edit_problem_path(@problem.id), class: "btn" %>
+          </li>
+          <li class="d-inline">
+            <%= link_to "削除", problem_path(@problem.id), class: "btn", method: :delete %>
+          </li>
+        </ul>
+      </div>
     </div>
+
+    <p><%= @problem.created_at %></p>
+    <h3><%= @problem.title %></h3>
+    <p class="card-text"><%= @problem.text %></p>
   </div>
 </div>
+
+<div class="my-5 text-center">
+  <% if user_signed_in? %>
+    <%= link_to "解決策を送る", new_problem_answer_path(params[:id]), class: "btn" %>
+  <% else %>
+    <%= link_to "ログインして解決策を送る", new_user_session_path, class: "btn" %>
+  <% end %>
+</div>
+
+<% if @answers.present? %>
+  <% @answers.each do |answer| %>
+    <div class="card mt-3">
+      <div class="card-body">
+        <div class="d-flex justify-content-between mb-3">
+          <div class="d-inline">
+            <%= link_to user_path(answer.user.id), class: "edit-link" do %>
+              <div class="d-inline">
+                <% if answer.user.image? %>
+                  <%= image_tag answer.user.image.url, class: "profile-img size30" %>
+                <% else %>
+                  <%= image_tag 'default.png', class: "profile-img size30" %>
+                <% end %>
+              </div>
+              <div class="d-inline problem-user">
+                <%= answer.user.name %>
+              </div>
+            <% end %>
+          </div>
+          
+          <div>
+            <p><%= answer.created_at %></p>
+          </div>
+        </div>
+        <div>
+          <p><%= answer.text %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
