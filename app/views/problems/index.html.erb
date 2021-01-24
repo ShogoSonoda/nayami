@@ -1,91 +1,33 @@
-<div class="container">
-  <div class="row">
-    <div class="col-3">
-      <ul>
-        <li class="mb-1">
-          <%= link_to root_path, class: "edit-link" do %>
-            <i class="fas fa-home mr-1"></i>HOME
+<div class="row">
+  <% @problems.each do |problem| %>
+    <div class="col-sm-6 mb-2">
+      <div class="card" >
+        <div class="card-body">
+          <%= link_to problem_path(problem.id), class: "edit-link" do %>
+            <h5 class="problem-title"><%= problem.title %></h5>
           <% end %>
-        </li>
-        <li class="mb-1">
-          <%= link_to new_problem_path, class: "edit-link" do %>
-            <i class="fas fa-pen mr-1"></i>お悩み投稿
-          <% end %>
-        </li>
-        <li class="mb-1">
-          <%= link_to rooms_path, class: "edit-link" do %>
-            <i class="fas fa-comments mr-1"></i>お悩みチャット
-          <% end %>
-        </li>
-        <li class="mb-1">
-          <%= link_to users_path, class: "edit-link" do %>
-            <i class="fas fa-search mr-1"></i>ユーザー検索
-          <% end %>
-        </li>
-        <% if user_signed_in? %>
-          <li class="mb-1">
-            <%= link_to followers_user_path(current_user.id), class: "edit-link" do %>
-              <i class="fas fa-users mr-1"></i>フォロワー
-            <% end %>
-          </li>
-          <li class="mb-1">
-            <%= link_to user_path(current_user.id), class: "edit-link" do %>
-              <i class="fas fa-user mr-1"></i>マイページ
-            <% end %>
-          </li>
-          <li class="mb-1">
-            <%= link_to destroy_user_session_path, method: :delete, class: "edit-link" do %>
-              <i class="fas fa-sign-out-alt mr-1"></i>ログアウト
-            <% end %>
-          </li>
-        <% else %>
-          <li class="mb-1">
-            <%= link_to new_user_registration_path, class: "edit-link" do %>
-              <i class="far fa-user mr-1"></i>新規登録
-            <% end %>
-          </li>
-          <li class="mb-1">
-            <%= link_to new_user_session_path, class: "edit-link" do %>
-              <i class="fas fa-sign-in-alt mr-1"></i>ログイン
-            <% end %>
-          </li>
-        <% end %>
-    </div>
-
-    <div class="col-9">
-      <div class="row">
-        <% @problems.each do |problem| %>
-          <div class="col-sm-6 mb-2">
-            <div class="card" >
-              <div class="card-body">
-                <%= link_to problem_path(problem.id), class: "edit-link" do %>
-                  <h5 class="card-title problem-title"><%= problem.title %></h5>
-                <% end %>
-                <p class="card-text problem-text"><%= truncate(problem.text, lenghth: 10) %></p>
-                <div class="d-flex justify-content-between">
-                  <div>
-                    <div class="d-inline">
-                      <%= link_to user_path(problem.user.id) do %>
-                        <% if problem.user.image? %>
-                          <%= image_tag problem.user.image.url, class: "profile-img size30" %>
-                        <% else %>
-                          <%= image_tag 'default.png', class: "profile-img size30" %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                    <div class="problem-user d-inline">
-                      <%= problem.user.name %>
-                    </div>
-                  </div>
-                  <div>
-                    <%= time_ago_in_words(problem.created_at) %> ago
-                  </div>
+          <p class="problem-text"><%= truncate(problem.text, lenghth: 10) %></p>
+          <div class="d-flex justify-content-between">
+            <div>
+              <%= link_to user_path(problem.user.id) do %>
+                <div class="d-inline">
+                  <% if problem.user.image? %>
+                    <%= image_tag problem.user.image.url, class: "profile-img size30" %>
+                  <% else %>
+                    <%= image_tag 'default.png', class: "profile-img size30" %>
+                  <% end %>
                 </div>
-              </div>
+                <div class="d-inline problem-user">
+                  <%= problem.user.name %>
+                </div>
+              <% end %>
+            </div>
+            <div>
+              <%= time_ago_in_words(problem.created_at) %> ago
             </div>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
