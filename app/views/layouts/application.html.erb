@@ -17,28 +17,28 @@
   <body class="d-flex flex-column h-100">
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-          <%= link_to "NAYAMI", root_path, class: "edit-link navbar-brand" %>
-          <div class="d-flex">
-            <div>
-              <%= search_form_for @search, url: problems_searchproblem_path, class: "form-inline" do |f| %>
-                <%= f.search_field :title_cont, placeholder: "悩みを検索", class: "form-control" %>
-                <%= button_tag(type: "submit", class: "btn") do %>
-                  <i class="fas fa-search"></i>
+        <div class="container-fluid d-flex justify-content-between">
+          <div>
+            <%= link_to "NAYAMI", root_path, class: "edit-link navbar-brand" %>
+          </div>
+          <div>
+            <%= search_form_for @search, url: problems_searchproblem_path, class: "form-inline" do |f| %>
+              <%= f.search_field :title_cont, placeholder: "悩みを検索", class: "search-form" %>
+              <%= button_tag(type: "submit", class: "btn") do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="my-auto">
+            <% if user_signed_in? %>
+              <%= link_to user_path(current_user.id) do %>
+                <% if current_user.image? %>
+                  <%= image_tag current_user.image.url, class: "profile-img size30" %>
+                <% else %>
+                  <%= image_tag 'default.png', class: "profile-img size30" %>
                 <% end %>
               <% end %>
-            </div>
-            <div class="my-auto ml-3">
-              <% if user_signed_in? %>
-                <%= link_to user_path(current_user.id) do %>
-                  <% if current_user.image? %>
-                    <%= image_tag current_user.image.url, class: "profile-img size30" %>
-                  <% else %>
-                    <%= image_tag 'default.png', class: "profile-img size30" %>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </div>
+            <% end %>
           </div>
         </div>
       </nav>
