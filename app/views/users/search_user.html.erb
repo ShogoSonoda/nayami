@@ -1,16 +1,22 @@
-<div class="container">
-  <div class="card mx-auto" style="width: 18rem;">
-    <ul class="list-group">
-      <li class="list-group-item active">検索結果</li>
-      <% if @results.length !=0 %>
-        <% @results.each do |user| %>
-          <% if user %>
-            <%= link_to user_path(user.id) do %>
-              <li class="list-group-item"><%= user.name %></li>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
-    </ul>
+<h3>ユーザー検索</h3>
+<%= search_form_for @search_user, url: users_path do |f| %>
+  <div class="card mb-3">
+    <div class="card-body">
+        <div class="mb-2">
+          <p class="mb-0">業種</p>
+          <%= f.collection_select(:industry_id_eq, Industry.all, :id, :name, include_blank: 'すべて') %>
+        </div>
+        <div class="mb-2">
+          <p class="mb-0">職種</p>
+          <%= f.collection_select(:occupation_id_eq, Occupation.all, :id, :name, include_blank: 'すべて') %>
+        </div>
+        <div class="mb-2">
+          <p class="mb-0">役職</p>
+          <%= f.collection_select(:position_id_eq, Position.all, :id, :name, include_blank: 'すべて') %>
+        </div>
+    </div>
   </div>
-</div>
+  <div class="text-center">
+    <%= f.submit "検索", {class: "btn"} %>
+  </div>
+<% end %>

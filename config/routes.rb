@@ -14,11 +14,11 @@ Rails.application.routes.draw do
   end
 
   get '/users/searchuser', to: 'users#search_user'
+  get '/users/mypage', to: 'users#mypage'
   resources :users do
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
     get :followers, on: :member
   end
 
-  get '/mypage' => 'users#mypage'
 end

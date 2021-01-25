@@ -1,30 +1,47 @@
-<div class="container">
-  <div class="card mx-auto w-75">
-    <div class="card-header">
-      ユーザー検索
-    </div>
-    <div class="card-body">
-      <%= search_form_for @p, url: users_searchuser_path do |f| %>
-        <div class="mb-3">
-          <label class="form-label">名前</label>
-          <%= f.search_field :name_cont, {class:"form-control"} %>
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text">業種</label>
-          <%= f.collection_select(:industry_id_eq, Industry.all, :id, :name, include_blank: '指定なし') %>
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text">職種</label>
-          <%= f.collection_select(:occupation_id_eq, Occupation.all, :id, :name, include_blank: '指定なし') %>
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text">役職</label>
-          <%= f.collection_select(:position_id_eq, Position.all, :id, :name, include_blank: '指定なし') %>
-        </div>
-        <div class="mb-3">
-          <%= f.submit "検索", {class: "btn btn-primary"} %>
+<h3>ユーザー検索結果</h3>
+<p><%= @search_user_results.length %>人のユーザーが見つかりました。</p>
+<% if @search_user_results.length !=0 %>
+  <% @search_user_results.each do |user| %>
+    <% if user %>
+      <%= link_to user_path(user.id), class: "edit-link" do %>
+        <div class="card mb-3">
+          <div class="card-body d-flex">
+            <div class="mr-4">
+              <% if user.image? %>
+                <%= image_tag user.image.url, class: "profile-img size85" %>
+              <% else %>
+                <%= image_tag 'default.png', class: "profile-img size85" %>
+              <% end %>
+            </div>
+            <div class="">
+              <div class="user-name">
+                <%= user.name %>
+              </div>
+              <div class="">
+                <% if user.industry %>
+                  業種: <%= user.industry.name %>
+                <% else %>
+                  業種: 未登録
+                <% end %>
+              </div>
+              <div class="">
+                <% if user.occupation %>
+                  職種: <%= user.occupation.name %>
+                <% else %>
+                  職種: 未登録
+                <% end %>
+              </div>
+              <div class="">
+                <% if user.position %>
+                  役職: <%= user.position.name %>
+                <% else %>
+                  役職: 未登録
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
-    </div>
-  </div>
-</div>
+    <% end %>
+  <% end %>
+<% end %>
