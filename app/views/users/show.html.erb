@@ -1,80 +1,61 @@
-<div class="container">
-  <div class="card mx-auto" style="width: 18rem;">
-    <% if @user.image? %>
-      <%= image_tag @user.image.thumb100.url, class: "card-img-top" %>
-    <% else %>
-      <%= image_tag "default.png", class: "card-img-top" %>
-    <% end %>
-  </div>
-
-  <div class="card mt-3">
-    <div class="card-body">
-      <h5 class="card-title"><%= @user.name %></h5>
-      <p class="card-text">
-        <% if @user.introduction != "" %>
-          <%= @user.introduction %>
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div class="mb-2">
+        <% if @user.image? %>
+          <%= image_tag @user.image.url, class: "profile-img size100" %>
         <% else %>
-          未記入
+          <%= image_tag 'default.png', class: "profile-img size100" %>
         <% end %>
-      </p>
+      </div>
+      <div class="">
+        <% if user_signed_in? && @user == current_user %>
+          <%= link_to "プロフィール編集", edit_user_path(current_user), {class: "btn edit-link"} %>
+        <% end %>
+      </div>
     </div>
-    <ul class="list-group list-group-flush">
-      <% if current_user != @user %>
-        <li class="list-group-item">
-          <% if @user.followed_by?(current_user) %>
-            <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete %>
-          <% else %>
-            <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
-          <% end %>
-        </li>
+    <div class="user-name mb-1"><%= @user.name %></div>
+    <p class="">
+      <% if @user.introduction != "" %>
+        <%= @user.introduction %>
+      <% else %>
+        
       <% end %>
-      <li class="list-group-item">
-        <%= link_to "フォロー", follows_user_path(@user.id) %>
-      </li>
-      <li class="list-group-item">
-        <%= link_to "フォロワー", followers_user_path(@user.id) %>
-      </li>
-      <li class="list-group-item">
+    </p>
+    <div class="d-flex mb-3">
+      <div class="mr-3">
+        <%= link_to follows_user_path(@user.id), class: "edit-link" do %>
+          <span class="bold mr-1"><%= @user.followings.length %></span>フォロー
+        <% end %>
+      </div>
+      <div>
+        <%= link_to followers_user_path(@user.id), class: "edit-link" do %>
+          <span class="bold mr-1"><%= @user.followers.length %></span>フォロワー
+        <% end %>
+      </div>
+    </div>
+    <div class="">
+      <div class="">
         <% if @user.industry %>
-          業種: <%= @user.industry.name %>
+          業種: <span class="bold"><%= @user.industry.name %></span>
         <% else %>
           業種: 未登録
         <% end %>
-      </li>
-      <li class="list-group-item">
+      </div>
+      <div class="">
         <% if @user.occupation %>
-          職種: <%= @user.occupation.name %>
+          職種: <span class="bold"><%= @user.occupation.name %></span>
         <% else %>
           職種: 未登録
         <% end %>
-      </li>
-      <li class="list-group-item">
+      </div>
+      <div class="">
         <% if @user.position %>
-          役職: <%= @user.position.name %>
+          役職: <span class="bold"><%= @user.position.name %></span>
         <% else %>
           役職: 未登録
         <% end %>
-      </li>
-    </ul>
-    <% if user_signed_in? && @user == current_user %>
-      <div class="card-body">
-        <%= link_to "プロフィール編集", edit_user_path(current_user), {class: "card-link"} %>
       </div>
-    <% end %>
-  </div>
-
-  <div class="card mx-auto mt-3">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item active" aria-current="true">参加しているルーム</a>
-      <% if @rooms.present? %>
-        <% @rooms.each do |room| %>
-          <li class="list-group-item list-group-item-action">
-            <%= link_to "#{room.name}", room_path(room.id) %>
-          </li>
-        <% end %>
-      <% else %>
-        <li class="list-group-item" >なし</li>
-      <% end %>
-    </ul>
+    </div>
   </div>
 </div>
