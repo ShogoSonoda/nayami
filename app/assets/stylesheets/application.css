@@ -128,10 +128,19 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .search-form {
-  padding: 8px;
+  padding: 5px;
   font-size: 16px;
   border: 2px solid #13b1c0;
+  border-radius: 4px;
   width: 300px;
+}
+
+.search-btn {
+  border: none;
+  background: #fff;
+  color: #13b1c0;
+  border: 2px solid #13b1c0;
+  border-radius: 4px;
 }
 
 .btn {

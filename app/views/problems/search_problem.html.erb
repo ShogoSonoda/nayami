@@ -7,7 +7,6 @@
         <div class="card-body">
           <div class="mb-3">
             <div>
-              <%= link_to user_path(problem.user.id), class: "edit-link" do %>
                 <div class="d-inline">
                   <% if problem.user.image? %>
                     <%= image_tag problem.user.image.url, class: "profile-img size50" %>
@@ -16,14 +15,14 @@
                   <% end %>
                 </div>
                 <div class="d-inline user-name">
-                  <%= problem.user.name %>
+                  <%= link_to "#{problem.user.name}", user_path(problem.user.id), class: "edit-link" %>
                 </div>
-              <% end %>
             </div>
           </div>
-
           <p><%= problem.created_at %></p>
-          <h5><%= problem.title %></h5>
+          <%= link_to problem_path(problem.id) do %>
+            <h5><%= problem.title %></h5>
+          <% end %>
         </div>
       </div>
     <% end %>

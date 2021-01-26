@@ -1,18 +1,16 @@
-<div>
-  <h3>解決策</h3>
-</div>
-<div class="card mt-3">
-  <div class="card-body">
-    <div class="mb-2">
-      <%= link_to "#{@problem.user.name}", user_path(@problem.user.id), class: "edit-link bold mr-2" %>さんに解決策を送る
+<h3>解決策を送る</h3>
+<%= form_with(model: [@problem, @answer], local: true) do |f| %>
+  <div class="card mt-3">
+    <div class="card-body">
+      <div class="mb-2">
+        <%= link_to "#{@problem.user.name}", user_path(@problem.user.id), class: "edit-link bold mr-2" %>さんに解決策を送る
+      </div>
+        <div class="mb-3">
+          <%= f.text_area :text, class:"form-control", rows: "10", placeholder: "解決策を具体的に入れて下さい..." %>
+        </div>
     </div>
-    <%= form_with(model: [@problem, @answer], local: true) do |f| %>
-      <div class="mb-3">
-        <%= f.text_area :text, class: "textarea p-2", placeholder: "解決策を具体的に入れて下さい..." %>
-      </div>
-      <div class="mb-3 text-center">
-        <%= f.submit "送信", class: "btn msg-btn-box" %>
-      </div>
-    <% end %>
   </div>
-</div>
+  <div class="my-3 text-center">
+    <%= f.submit "送信", class: "btn" %>
+  </div>
+<% end %>

@@ -24,7 +24,7 @@
           <div>
             <%= search_form_for @search, url: problems_searchproblem_path, class: "form-inline" do |f| %>
               <%= f.search_field :title_cont, placeholder: "悩みを検索", class: "search-form" %>
-              <%= button_tag(type: "submit", class: "btn") do %>
+              <%= button_tag(type: "submit", class: "search-btn ml-1") do %>
                 <i class="fas fa-search"></i>
               <% end %>
             <% end %>

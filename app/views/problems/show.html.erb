@@ -2,7 +2,6 @@
   <div class="card-body">
     <div class="d-flex justify-content-between mb-3">
       <div>
-        <%= link_to user_path(@problem.user.id), class: "edit-link" do %>
           <div class="d-inline">
             <% if @problem.user.image? %>
               <%= image_tag @problem.user.image.url, class: "profile-img size50" %>
@@ -11,35 +10,33 @@
             <% end %>
           </div>
           <div class="d-inline user-name">
-            <%= @problem.user.name %>
+            <%= link_to "#{@problem.user.name}", user_path(@problem.user.id), class: "edit-link" %>
           </div>
-        <% end %>
       </div>
       <div>
-        <ul>
-          <li class="d-inline">
-            <%= link_to "編集", edit_problem_path(@problem.id), class: "btn" %>
-          </li>
-          <li class="d-inline">
-            <%= link_to "削除", problem_path(@problem.id), class: "btn", method: :delete %>
-          </li>
-        </ul>
+        <% if user_signed_in? && @problem.user.id == current_user.id %>
+          <ul>
+            <li class="d-inline">
+              <%= link_to "編集", edit_problem_path(@problem.id), class: "btn" %>
+            </li>
+            <li class="d-inline">
+              <%= link_to "削除", problem_path(@problem.id), class: "btn", method: :delete %>
+            </li>
+          </ul>
+        <% end %>
       </div>
     </div>
-
     <p><%= @problem.created_at %></p>
     <h3><%= @problem.title %></h3>
     <p class="card-text"><%= @problem.text %></p>
   </div>
 </div>
 
-<div class="my-5 text-center">
-  <% if user_signed_in? %>
+<% if user_signed_in? && @problem.user.id != current_user.id %>
+  <div class="my-5 text-center">
     <%= link_to "解決策を送る", new_problem_answer_path(params[:id]), class: "btn" %>
-  <% else %>
-    <%= link_to "ログインして解決策を送る", new_user_session_path, class: "btn" %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <% if @answers.present? %>
   <% @answers.each do |answer| %>
