@@ -144,7 +144,12 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: 700;
 }
 
-.unjoin {
-  color: #333;
-  border: 2px solid #333;
+.join {
+  color: #fff;
+  background: #13b1c0;
+}
+
+.follow {
+  color: #fff;
+  background: #13b1c0;
 }

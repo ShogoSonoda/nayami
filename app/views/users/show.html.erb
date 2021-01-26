@@ -10,7 +10,13 @@
       </div>
       <div class="">
         <% if user_signed_in? && @user == current_user %>
-          <%= link_to "プロフィール編集", edit_user_path(current_user), {class: "btn edit-link"} %>
+          <%= link_to "プロフィール編集", edit_user_path(current_user), {class: "btn"} %>
+        <% else %>
+          <% if @user.followed_by?(current_user) %>
+            <%= link_to "フォロー中", user_relationships_path(@user.id), class: "btn follow" , method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(@user.id), class: "btn" , method: :post %>
+          <% end %>
         <% end %>
       </div>
     </div>
