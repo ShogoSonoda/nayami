@@ -32,11 +32,6 @@
       <% end %>
     </li>
     <li class="mb-1">
-      <%= link_to followers_user_path(current_user.id), class: "edit-link" do %>
-        <i class="fas fa-users mr-1"></i>フォロワー
-      <% end %>
-    </li>
-    <li class="mb-1">
       <%= link_to destroy_user_session_path, method: :delete, class: "edit-link" do %>
         <i class="fas fa-sign-out-alt mr-1"></i>ログアウト
       <% end %>
