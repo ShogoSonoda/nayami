@@ -9,7 +9,6 @@
           <p class="problem-text"><%= truncate(problem.text, lenghth: 10) %></p>
           <div class="d-flex justify-content-between">
             <div>
-              <%= link_to user_path(problem.user.id) do %>
                 <div class="d-inline">
                   <% if problem.user.image? %>
                     <%= image_tag problem.user.image.url, class: "profile-img size30" %>
@@ -18,9 +17,8 @@
                   <% end %>
                 </div>
                 <div class="d-inline problem-user">
-                  <%= problem.user.name %>
+                  <%= link_to "#{problem.user.name}", user_path(problem.user.id), class: "edit-link" %>
                 </div>
-              <% end %>
             </div>
             <div>
               <%= time_ago_in_words(problem.created_at) %> ago

@@ -4,10 +4,12 @@
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <%= link_to "#{room.name}", room_path(room.id), class: "edit-link" %>
         <span>
-          <% if room.room_user_by?(current_user) %>
-            <%= link_to "参加中", room_room_users_path(room.id), class: "btn join", method: :delete %>
-          <% else %>
-            <%= link_to "参加する", room_room_users_path(room.id), class: "btn", method: :post %>
+          <% if user_signed_in? %>
+            <% if room.room_user_by?(current_user) %>
+              <%= link_to "参加中", room_room_users_path(room.id), class: "btn join", method: :delete %>
+            <% else %>
+              <%= link_to "参加する", room_room_users_path(room.id), class: "btn", method: :post %>
+            <% end %>
           <% end %>
         </span>
       </li>
