@@ -1,22 +1,21 @@
-<div class="container">
-  <div class="card mx-auto" style="width: 18rem;">
+<h3>ログイン</h3>
+<%= form_with model: @user, url: user_session_path, local: true do |f| %>
+  <div class="card">
     <div class="card-body">
-      <%= form_with model: @user, url: user_session_path, local: true do |f| %>
       <%= flash[:notice] %>
       <%= flash[:alert] %>
       <%= render "devise/shared/error_messages", resource: @user %>
         <div class="mb-3">
-          <%= f.label :email, {class: "form-label"} %>
+          <label class="form-label">email</label>
           <%= f.email_field :email, {autofocus: true, class: "form-control"} %>
         </div>
         <div class="mb-3">
-          <%= f.label :password, {class: "form-label"} %>
+          <label class="form-label">パスワード</label>
           <%= f.password_field :password, {autocomplete: "off", class: "form-control"} %>
         </div>
-        <div class="mb-3">
-          <%= f.submit "ログイン", {class: "btn btn-primary"} %>
-        </div>
-      <% end %>
     </div>
   </div>
-</div>
+  <div class="my-2 text-center">
+    <%= f.submit "ログイン", {class: "btn"} %>
+  </div>
+<% end %>
