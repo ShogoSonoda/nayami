@@ -3,10 +3,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :follows, :followers]
   before_action :create_searching_object, only: [:index, :search_user]
 
-  def index
-    @users = User.all.order("created_at DESC")
-  end
-
   def mypage
     redirect_to user_path(current_user)
   end
@@ -38,7 +34,10 @@ class UsersController < ApplicationController
   end
 
   def search_user
-    @results = @p.result
+  end
+
+  def index
+    @search_user_results = @search_user.result
   end
 
   private
@@ -51,6 +50,6 @@ class UsersController < ApplicationController
   end
 
   def create_searching_object
-    @p = User.ransack(params[:q])
+    @search_user = User.ransack(params[:q])
   end
 end

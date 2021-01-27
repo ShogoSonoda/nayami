@@ -1,10 +1,7 @@
-<div class="container">
-  <div class="card mx-auto w-75">
-    <div class="card-header">
-      プロフィール編集
-    </div>
+<h3>プロフィール編集</h3>
+<%= form_with model: @user do |f| %>
+  <div class="card">
     <div class="card-body">
-      <%= form_with model: @user do |f| %>
         <div class="mb-3">
           <label class="form-label">名前</label>
           <%= f.text_field :name, {class:"form-control"} %>
@@ -17,26 +14,25 @@
           <label class="form-label">自己紹介</label>
           <%= f.text_area :introduction, {class:"form-control", rows: "3"} %>
         </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text">業種</label>
+        <div class="mb-2">
+          <p class="mb-0">業種</p>
           <%= f.collection_select(:industry_id, Industry.all, :id, :name, {}, {class:"form-select"}) %>
         </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text">職種</label>
-          <%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {class:"form-select"}) %>
+        <div class="mb-2">
+          <p class="mb-0">職種</p>
+          <%= f.collection_select(:occupation__eq, Occupation.all, :id, :name, {}, {class:"form-select"}) %>
         </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text">役職</label>
-          <%= f.collection_select(:position_id, Position.all, :id, :name, {}, {class:"form-select"}) %>
+        <div class="mb-2">
+          <p class="mb-0">役職</p>
+          <%= f.collection_select(:position_id_, Position.all, :id, :name, {}, {class:"form-select"}) %>
         </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text">画像</label>
-          <%= f.file_field :image, class: "form-control" %>
+        <div class="mb-2">
+          <p class="mb-0">画像</p>
+          <%= f.file_field :image %>
         </div>
-        <div class="mb-3">
-          <%= f.submit "保存", {class: "btn btn-primary"} %>
-        </div>
-      <% end %>
     </div>
   </div>
-</div>
+  <div class="my-2 text-center">
+    <%= f.submit "保存", {class: "btn"} %>
+  </div>
+<% end %>

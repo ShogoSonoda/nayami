@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :new, :create]
+
   def index
     @rooms = Room.all
   end
@@ -6,7 +8,7 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @message = Message.new
-    @messages = @room.messages.all
+    @messages = @room.messages.includes(:user).order(:id)
   end
   
   def new

@@ -1,0 +1,20 @@
+<%= form_with model: problem, local: true do |f| %>
+  <div class="card">
+    <div class="card-body">
+        <%= render 'shared/error_messages', model: problem %>
+        <h3>タイトル</h3>
+        <p>わかりやすく、具体的に書きましょう。</p>
+        <div class="mb-3">
+          <%= f.text_field :title, {class:"form-control"} %>
+        </div>
+        <h3>解決してほしい悩み</h3>
+        <p>解決してほしいことを具体的に書きましょう。</p>
+        <div class="mb-3">
+          <%= f.text_area :text, {class:"form-control", rows: "10"} %>
+        </div>
+    </div>
+  </div>
+  <div class="my-2 text-center">
+    <%= f.submit "投稿する", {class: "btn"} %>
+  </div>
+<% end %>

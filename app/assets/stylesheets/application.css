@@ -13,3 +13,146 @@
  *= require_tree .
  *= require_self
  */
+body {
+  background-color: #f4f8fa;
+}
+
+header, footer {
+  background-color: #fff;
+}
+
+li {
+  list-style: none;
+  color: black;
+}
+
+.problem-title {
+  font-weight: 700;
+  color: #4f5050;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.problem-user {
+  color: #4f5050;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.problem-text {
+  color: #333;
+  font-size: 15px;
+}
+
+.user-name {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.btn-small {
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid #13b1c0;
+  color: #13b1c0;
+  text-decoration: none;
+  padding: 4px 10px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.card {
+  border: 1px solid #f6f6f6;
+  border-bottom: 3px solid #e8e8e8;
+}
+
+.edit-link {
+  text-decoration: none;
+  color: black;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 700;
+  color: #333;
+}
+
+.profile-img {
+  border-radius: 50%;
+  background-position: top;
+  background-size: cover;
+}
+
+.size30 {
+  width: 30px;
+  height: 30px;
+}
+
+.size50 {
+  width: 50px;
+  height: 50px;
+}
+
+.size85 {
+  width: 85px;
+  height: 85px;
+}
+
+.size100 {
+  width: 100px;
+  height: 100px;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.body-name {
+  color: #12b1bf;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.msg-btn-box {
+  padding: 15px 60px;
+  border-radius: 40px;
+}
+
+.search-form {
+  padding: 5px;
+  font-size: 16px;
+  border: 2px solid #13b1c0;
+  border-radius: 4px;
+  width: 300px;
+}
+
+.search-btn {
+  border: none;
+  background: #fff;
+  color: #13b1c0;
+  border: 2px solid #13b1c0;
+  border-radius: 4px;
+}
+
+.btn {
+  text-align: center;
+  border: 2px solid #13b1c0;
+  color: #13b1c0;
+  text-decoration: none;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.join {
+  color: #fff;
+  background: #13b1c0;
+}
+
+.follow {
+  color: #fff;
+  background: #13b1c0;
+}

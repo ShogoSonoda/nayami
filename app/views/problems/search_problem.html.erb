@@ -1,16 +1,30 @@
-<div class="container">
-  <div class="card mx-auto">
-    <ul class="list-group">
-      <li class="list-group-item active">検索結果</li>
-      <% if @results.length !=0 %>
-        <% @results.each do |problem| %>
-          <% if problem %>
-            <%= link_to problem_path(problem.id) do %>
-              <li class="list-group-item"><%= problem.title %></li>
-            <% end %>
+<h3>検索結果</h3>
+<p><%= @results.length %>個の悩みが見つかりました。</p>
+<% if @results.length != 0 %>
+  <% @results.each do |problem| %>
+    <% if problem %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="mb-3">
+            <div>
+                <div class="d-inline">
+                  <% if problem.user.image? %>
+                    <%= image_tag problem.user.image.url, class: "profile-img size50" %>
+                  <% else %>
+                    <%= image_tag 'default.png', class: "profile-img size50" %>
+                  <% end %>
+                </div>
+                <div class="d-inline user-name">
+                  <%= link_to "#{problem.user.name}", user_path(problem.user.id), class: "edit-link" %>
+                </div>
+            </div>
+          </div>
+          <p><%= problem.created_at %></p>
+          <%= link_to problem_path(problem.id) do %>
+            <h5><%= problem.title %></h5>
           <% end %>
-        <% end %>
-      <% end %>
-    </ul>
-  </div>
-</div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

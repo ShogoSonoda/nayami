@@ -1,0 +1,52 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex">
+        <div class="mr-4">
+          <%= link_to user_path(user.id), class: "edit-link" do %>
+            <% if user.image? %>
+              <%= image_tag user.image.url, class: "profile-img size85" %>
+            <% else %>
+              <%= image_tag 'default.png', class: "profile-img size85" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="">
+          <div class="user-name">
+            <%= link_to "#{user.name}", user_path(user.id), class: "edit-link" %>
+          </div>
+          <div class="">
+            <% if user.industry %>
+              業種: <span class="bold"><%= user.industry.name %></span>
+            <% else %>
+              業種: 未登録
+            <% end %>
+          </div>
+          <div class="">
+            <% if user.occupation %>
+              職種: <span class="bold"><%= user.occupation.name %></span>
+            <% else %>
+              職種: 未登録
+            <% end %>
+          </div>
+          <div class="">
+            <% if user.position %>
+              役職: <span class="bold"><%= user.position.name %></span>
+            <% else %>
+              役職: 未登録
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <% if user_signed_in? && user != current_user %>
+          <% if user.followed_by?(current_user) %>
+            <%= link_to "フォロー中", user_relationships_path(user.id), class: "btn follow" , method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(user.id), class: "btn" , method: :post %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
