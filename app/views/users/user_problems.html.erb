@@ -1,0 +1,2 @@
+<h3><%= link_to "#{@user.name}", user_path(@user.id), class: "edit-link" %>の悩み投稿一覧</h3>
+<%= render partial: "problems/problems_card", locals: { problems: @problems } %>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:mypage, :edit, :update]
-  before_action :set_user, only: [:show, :edit, :update, :follows, :followers]
+  before_action :authenticate_user!, only: [:mypage, :edit, :update, :user_problems, :user_rooms]
+  before_action :set_user, only: [:show, :edit, :update, :follows, :followers, :user_problems, :user_rooms]
   before_action :create_searching_object, only: [:index, :search_user]
 
   def mypage
@@ -38,6 +38,14 @@ class UsersController < ApplicationController
 
   def index
     @search_user_results = @search_user.result
+  end
+
+  def user_problems
+    @problems = @user.problems
+  end
+
+  def user_rooms
+    @rooms = @user.rooms
   end
 
   private

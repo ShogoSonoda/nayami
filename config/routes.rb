@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     end
     member do
       get :user_problems
+      get :user_rooms
     end
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
