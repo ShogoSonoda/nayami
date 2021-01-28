@@ -1,0 +1,31 @@
+<div class="row">
+  <% problems.each do |problem| %>
+    <div class="col-sm-6 mb-2">
+      <div class="card" >
+        <div class="card-body">
+          <%= link_to problem_path(problem.id), class: "edit-link" do %>
+            <h5 class="problem-title"><%= problem.title %></h5>
+          <% end %>
+          <p class="problem-text"><%= truncate(problem.text, lenghth: 10) %></p>
+          <div class="d-flex justify-content-between">
+            <div>
+                <div class="d-inline">
+                  <% if problem.user.image? %>
+                    <%= image_tag problem.user.image.url, class: "profile-img size30" %>
+                  <% else %>
+                    <%= image_tag 'default.png', class: "profile-img size30" %>
+                  <% end %>
+                </div>
+                <div class="d-inline problem-user">
+                  <%= link_to "#{problem.user.name}", user_path(problem.user.id), class: "edit-link" %>
+                </div>
+            </div>
+            <div>
+              <%= time_ago_in_words(problem.created_at) %> ago
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
