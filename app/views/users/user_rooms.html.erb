@@ -1,0 +1,2 @@
+<h3><%= link_to "#{@user.name}", user_path(@user.id), class: "edit-link" %>が参加中のチャットルーム</h3>
+<%= render partial: "rooms/room_list", locals: { rooms: @rooms } %>
