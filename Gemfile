@@ -64,3 +64,7 @@ gem 'active_hash'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'ransack'
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end
