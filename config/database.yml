@@ -50,8 +50,7 @@ test:
 #
 production:
   <<: *default
-  database: nayami_production
-  username: admin
+  database: <%= Rails.application.credentials.db[:database] %>
+  username: <%= Rails.application.credentials.db[:username] %>
   password: <%= Rails.application.credentials.db[:password] %>
-  host:     <%= Rails.application.credentials.db[:host] %>
-  port: 3306
+  socket: <%= Rails.application.credentials.db[:socket] %>
