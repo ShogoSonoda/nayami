@@ -64,6 +64,8 @@ gem 'active_hash'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'ransack'
+gem 'rubocop', require:false
+gem 'rubocop-rails', require:false
 
 group :production do
   gem 'unicorn', '5.4.1'
