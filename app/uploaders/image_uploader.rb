@@ -3,24 +3,24 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
-  process :resize_to_limit => [640, 480]
+  process resize_to_limit: [640, 480]
 
-  process :convert => 'jpg'
+  process convert: 'jpg'
 
   version :thumb do
-    process :resize_to_limit => [300, 300]
+    process resize_to_limit: [300, 300]
   end
 
   version :thumb100 do
-    process :resize_to_limit => [100,100]
+    process resize_to_limit: [100, 100]
   end
 
   version :thumb30 do
-    process :resize_to_limit => [30,30]
+    process resize_to_limit: [30, 30]
   end
 
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   def filename
@@ -32,6 +32,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   protected
+
   def secure_token
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
@@ -51,7 +52,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-  
+
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 

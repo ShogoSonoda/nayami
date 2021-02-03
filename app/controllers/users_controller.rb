@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:mypage, :edit, :update, :user_problems, :user_rooms]
-  before_action :set_user, only: [:show, :edit, :update, :follows, :followers, :user_problems, :user_rooms]
-  before_action :create_searching_object, only: [:index, :search_user]
+  before_action :authenticate_user!, only: %i[mypage edit update user_problems user_rooms]
+  before_action :set_user, only: %i[show edit update follows followers user_problems user_rooms]
+  before_action :create_searching_object, only: %i[index search_user]
 
   def mypage
     redirect_to user_path(current_user)
@@ -12,9 +12,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    unless @user == current_user
-      redirect_to user_path(@user)
-    end
+    redirect_to user_path(@user) unless @user == current_user
   end
 
   def update
@@ -33,8 +31,7 @@ class UsersController < ApplicationController
     @users = @user.followers
   end
 
-  def search_user
-  end
+  def search_user; end
 
   def index
     @search_user_results = @search_user.result
@@ -49,6 +46,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def set_user
     @user = User.find(params[:id])
   end

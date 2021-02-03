@@ -6,7 +6,7 @@ RSpec.describe Room, type: :model do
   end
 
   describe 'ルーム新規作成' do
-    it "nameが存在しないと作成できないこと" do
+    it 'nameが存在しないと作成できないこと' do
       expect(@room).to be_valid
     end
   end
