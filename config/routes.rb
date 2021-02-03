@@ -8,12 +8,12 @@ Rails.application.routes.draw do
     collection do
       get :search_problem
     end
-    resources :answers, only: [:new, :create]
+    resources :answers, only: %i[new create]
   end
 
-  resources :rooms, only: [:index, :show, :new, :create] do
-    resources :messages, only: [:index, :create]
-    resource :room_users, only: [:create, :destroy]
+  resources :rooms, only: %i[index show new create] do
+    resources :messages, only: %i[index create]
+    resource :room_users, only: %i[create destroy]
   end
 
   # get '/users/searchuser', to: 'users#search_user'
@@ -28,9 +28,8 @@ Rails.application.routes.draw do
       get :user_problems
       get :user_rooms
     end
-    resource :relationships, only: [:create, :destroy]
+    resource :relationships, only: %i[create destroy]
     get :follows, on: :member
     get :followers, on: :member
   end
-
 end

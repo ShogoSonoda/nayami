@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :new, :create]
+  before_action :authenticate_user!, only: %i[show new create]
 
   def index
     @rooms = Room.all
@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
     @message = Message.new
     @messages = @room.messages.includes(:user).order(:id)
   end
-  
+
   def new
     @room = Room.new
   end
@@ -25,6 +25,7 @@ class RoomsController < ApplicationController
   end
 
   private
+
   def room_params
     params.require(:room).permit(:name)
   end

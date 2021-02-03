@@ -1,10 +1,10 @@
 class ProblemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_problem, only: [:show, :edit, :update, :destroy, :user_check]
-  before_action :user_check, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :set_problem, only: %i[show edit update destroy user_check]
+  before_action :user_check, only: %i[edit update destroy]
 
   def index
-    @problems = Problem.includes(:user).order("created_at DESC")
+    @problems = Problem.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -25,9 +25,7 @@ class ProblemsController < ApplicationController
     @answers = @problem.answers.includes(:user)
   end
 
-  def edit
-    
-  end
+  def edit; end
 
   def update
     if @problem.update(problem_params)
@@ -48,6 +46,7 @@ class ProblemsController < ApplicationController
   end
 
   private
+
   def problem_params
     params.require(:problem).permit(:title, :text).merge(user_id: current_user.id)
   end
@@ -57,8 +56,6 @@ class ProblemsController < ApplicationController
   end
 
   def user_check
-    if current_user.id != @problem.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id != @problem.user_id
   end
 end
