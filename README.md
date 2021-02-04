@@ -1,24 +1,73 @@
-# README
+#アプリ名「NAYAMI」
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#概要
+「働く人の悩みを解決する」
+働く人達の悩みを解決し、世の中をより良いものにするサービスです。
 
-Things you may want to cover:
+#URL
+https://nayami-1113.herokuapp.com/
+テストユーザー
+email: test@gmail.com
+password: 111111
 
-* Ruby version
+#制作背景
+私の職場は同期がおらず、入社して間もないとき、仕事の悩みを気軽に相談できる人がいませんでした。
+新人やベテランに関わらず、同じ立場でしか話せない悩みは、誰にでもあると思います。
+そのような悩みを気軽に解決することができないかと思い、このサービスの制作をしました。
+また、このサービスを利用することで、世の中の悩みを解決し、人と社会がより良いものになるサービスを目指しました。
 
-* System dependencies
+#使い方
+*悩みを投稿する
+*悩みに対して解決策を送る
+*悩んでいることをチャットルームで話し合う
+*同じ立場のユーザーの検索
+*投稿された悩みの検索
 
-* Configuration
+#機能一覧
+*ユーザー機能
+*悩み機能
+*解決策機能
+*チャットルーム機能
+*メッセージ機能
+*検索機能
+*フォロー・フォロワー機能
+*プロフィール機能
 
-* Database creation
+*くわしくはこちら
+[要件定義](https://docs.google.com/spreadsheets/d/13jsAWsyLl8Ecz01NcLeD3C114wba_TVGLZx51B0tBgc/edit#gid=282075926"要件定義")
 
-* Database initialization
+#環境・使用言語
+##フロントエンド
+*Bootstrap 5.0.0
+*HTML
+*CSS
+*JavaScript
+*jQuery
 
-* How to run the test suite
+##バックエンド
+*Ruby 2.6.5
+*Rails 6.0.3.4
 
-* Services (job queues, cache servers, search engines, etc.)
+##開発環境
+MySQL 5.6.47
 
-* Deployment instructions
+##本番環境
+*HEROKU
+*現在AWSにデプロイしている途中です
 
-* ...
+##テスト
+*Rspec
+
+##その他
+*Rubocop-aribnb
+*GitHub
+
+#追加したい機能
+*チャットルーム検索機能
+*テストコードの追加
+*AWSを使用したインフラ構築
+*ajaxを使ったチャット
+
+#About me
+新卒で金融機関に入社し、金融・保険商品の営業をしています。
+現在は、働きながらエンジニア転職を目指して勉強中です。
