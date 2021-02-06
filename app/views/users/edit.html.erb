@@ -20,11 +20,11 @@
         </div>
         <div class="mb-2">
           <p class="mb-0">職種</p>
-          <%= f.collection_select(:occupation__eq, Occupation.all, :id, :name, {}, {class:"form-select"}) %>
+          <%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {class:"form-select"}) %>
         </div>
         <div class="mb-2">
           <p class="mb-0">役職</p>
-          <%= f.collection_select(:position_id_, Position.all, :id, :name, {}, {class:"form-select"}) %>
+          <%= f.collection_select(:position_id, Position.all, :id, :name, {}, {class:"form-select"}) %>
         </div>
         <div class="mb-2">
           <p class="mb-0">画像</p>
