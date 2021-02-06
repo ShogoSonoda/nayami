@@ -8,7 +8,8 @@ class Industry < ActiveHash::Base
     { id: 6, name: '情報(広告・通信・マスコミ)' },
     { id: 7, name: '百貨店・専門店・流通・小売' },
     { id: 8, name: 'IT・ソフトウェア・情報処理' },
-    { id: 9, name: 'その他' }
+    { id: 9, name: '公務員' },
+    { id: 10, name: 'その他' }
   ]
 
   include ActiveHash::Associations

@@ -28,7 +28,7 @@
     </div>
     <p><%= @problem.created_at %></p>
     <h3><%= @problem.title %></h3>
-    <p class="card-text"><%= @problem.text %></p>
+    <p class="card-text"><%= simple_format(@problem.text) %></p>
   </div>
 </div>
 
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div>
-          <p><%= answer.text %></p>
+          <p><%= simple_format(answer.text) %></p>
         </div>
       </div>
     </div>
