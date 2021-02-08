@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root to: 'problems#index'
-  post '/problems/guest_sign_in', to: 'problems#new_guest'
-
+  
   devise_for :users
+  devise_scope :user do
+    post '/users/guest_sign_in', to: 'users#new_guest'
+  end
 
   resources :problems do
     collection do
