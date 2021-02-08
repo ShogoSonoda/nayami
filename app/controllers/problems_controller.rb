@@ -3,15 +3,6 @@ class ProblemsController < ApplicationController
   before_action :set_problem, only: %i[show edit update destroy user_check]
   before_action :user_check, only: %i[edit update destroy]
 
-  def new_guest
-    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
-      user.name = "ゲストユーザー"
-      user.password = SecureRandom.urlsafe_base64
-    end
-    sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
-  end
-
   def index
     @problems = Problem.includes(:user).order('created_at DESC')
   end
