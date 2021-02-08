@@ -3,6 +3,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update follows followers user_problems user_rooms]
   before_action :create_searching_object, only: %i[index search_user]
 
+  def new_guest
+    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = "ゲストユーザー"
+      user.password = SecureRandom.urlsafe_base64
+    end
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   def mypage
     redirect_to user_path(current_user)
   end

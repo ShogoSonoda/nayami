@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   root to: 'problems#index'
-
+  
   devise_for :users
+  devise_scope :user do
+    post '/users/guest_sign_in', to: 'users#new_guest'
+  end
 
-  # get '/problems/searchproblem', to: 'problems#search_problem'
   resources :problems do
     collection do
       get :search_problem
@@ -16,9 +18,6 @@ Rails.application.routes.draw do
     resource :room_users, only: %i[create destroy]
   end
 
-  # get '/users/searchuser', to: 'users#search_user'
-  # get '/users/mypage', to: 'users#mypage'
-  # get '/users/userproblems', to: 'users#user_problems'
   resources :users do
     collection do
       get :search_user
