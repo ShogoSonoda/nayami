@@ -156,3 +156,11 @@ h1,h2,h3,h4,h5,h6 {
   color: #fff;
   background: #13b1c0;
 }
+
+.blue {
+  background-color: #66FFFF;
+}
+
+.alert {
+  margin: 0;
+}
