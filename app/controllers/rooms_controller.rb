@@ -7,8 +7,13 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @message = Message.new
-    @messages = @room.messages.includes(:user).order(:id)
+    if @room.room_user_by?(current_user)
+      @message = Message.new
+      @messages = @room.messages.includes(:user).order(:id)
+    else
+      flash[:alert] = "ルームに参加して下さい"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def new
