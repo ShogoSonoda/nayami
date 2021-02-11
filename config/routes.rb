@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   end
 
   resources :rooms, only: %i[index show new create] do
+    collection do
+      get :search_room
+    end
     resources :messages, only: %i[index create]
     resource :room_users, only: %i[create destroy]
   end
