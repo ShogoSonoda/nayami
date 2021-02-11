@@ -1,0 +1,10 @@
+<h3>チャットルームを探す</h3>
+<div>
+  <%= search_form_for @search_room, url: search_room_rooms_path, class: "form-inline" do |f| %>
+    <%= f.search_field :name_cont, placeholder: "チャットルームを検索", class: "search-form" %>
+    <%= button_tag(type: "submit", class: "search-btn ml-1") do %>
+      <i class="fas fa-search"></i>
+    <% end %>
+  <% end %>
+</div>
+<%= render partial: "room_list", locals: { rooms: @rooms } %>
