@@ -1,0 +1,14 @@
+<h3>チャットルームを探す</h3>
+<%= search_form_for search_room, url: search_room_rooms_path do |f| %>
+  <div class="card">
+    <div class="card-body">
+        <div class="mb-2">
+          <p class="mb-0">キーワードを入れて下さい</p>
+          <%= f.search_field :name_cont %>
+        </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <%= f.submit "検索", {class: "btn"} %>
+  </div>
+<% end %>
