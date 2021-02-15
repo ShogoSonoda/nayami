@@ -69,4 +69,7 @@ gem 'rmagick'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
+group :production, :staging do
+  gem 'unicorn'
+end
 

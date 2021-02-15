@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.15.0"
 
-set :application, "sample611"
+set :application, "nayami"
 set :repo_url, "git@github.com:sonopon/nayami.git"
 
 # rbenvの設定
@@ -12,7 +12,7 @@ set :rbenv_ruby, '2.7.2'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/rails/nayami"
+set :deploy_to, "/var/www/rails/nayami"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
