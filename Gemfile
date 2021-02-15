@@ -55,10 +55,6 @@ group :test do
   gem 'webdrivers'
 end
 
-group :production do
-  gem 'unicorn'
-end
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
@@ -73,4 +69,7 @@ gem 'rmagick'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
+group :production, :staging do
+  gem 'unicorn'
+end
 
