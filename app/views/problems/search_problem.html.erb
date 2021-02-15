@@ -20,7 +20,7 @@
             </div>
           </div>
           <p><%= problem.created_at %></p>
-          <%= link_to problem_path(problem.id) do %>
+          <%= link_to problem_path(problem.id), class: "edit-link" do %>
             <h5><%= problem.title %></h5>
           <% end %>
         </div>
