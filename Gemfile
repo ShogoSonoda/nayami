@@ -68,8 +68,8 @@ gem 'ransack'
 gem 'rmagick'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
+gem 'fog-aws'
 
 group :production, :staging do
   gem 'unicorn'
 end
-
