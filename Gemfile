@@ -69,6 +69,7 @@ gem 'rmagick'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 gem 'fog-aws'
+gem 'dotenv-rails'
 
 group :production, :staging do
   gem 'unicorn'
