@@ -34,6 +34,9 @@ https://nayami-1113.herokuapp.com/
 * くわしくはこちら
 [要件定義](https://docs.google.com/spreadsheets/d/13jsAWsyLl8Ecz01NcLeD3C114wba_TVGLZx51B0tBgc/edit#gid=282075926"要件定義")
 
+## ER図
+![ER図](https://github.com/sonopon/nayami/blob/master/app/assets/images/ER%E5%9B%B3.png)
+
 # 環境・使用言語
 ## フロントエンド
 * Bootstrap 5.0.0
