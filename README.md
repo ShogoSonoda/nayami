@@ -16,15 +16,20 @@ https://nayami-1113.herokuapp.com/
 
 # 使い方
 ## 悩み投稿
+![悩み投稿](https://github.com/sonopon/nayami/blob/master/app/assets/images/README/%E6%82%A9%E3%81%BF%E6%8A%95%E7%A8%BF%E5%8B%95%E7%94%BB.gif)
 
 ## 解決策投稿
+![解決策投稿](https://github.com/sonopon/nayami/blob/master/app/assets/images/README/%E8%A7%A3%E6%B1%BA%E7%AD%96%E6%8A%95%E7%A8%BF%E5%8B%95%E7%94%BB.gif)
 
 ## 検索機能
 ### 悩み投稿検索
-### ユーザー検索
-### チャットルーム検索
+![悩み投稿検索](https://github.com/sonopon/nayami/blob/master/app/assets/images/README/%E6%82%A9%E3%81%BF%E6%8A%95%E7%A8%BF%E6%A4%9C%E7%B4%A2%E5%8B%95%E7%94%BB.gif)
 
-## チャットルーム
+### ユーザー検索
+![ユーザー検索](https://github.com/sonopon/nayami/blob/master/app/assets/images/README/%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E6%A4%9C%E7%B4%A2%E5%8B%95%E7%94%BB.gif)
+
+### チャットルーム検索
+![チャットルーム検索](https://github.com/sonopon/nayami/blob/master/app/assets/images/README/%E3%83%81%E3%83%A3%E3%83%83%E3%83%88%E3%83%AB%E3%83%BC%E3%83%A0%E6%A4%9C%E7%B4%A2%E5%8B%95%E7%94%BB.gif)
 
 # 機能一覧
 * ユーザー機能
@@ -40,7 +45,7 @@ https://nayami-1113.herokuapp.com/
 [要件定義](https://docs.google.com/spreadsheets/d/13jsAWsyLl8Ecz01NcLeD3C114wba_TVGLZx51B0tBgc/edit#gid=282075926"要件定義")
 
 ## ER図
-![ER図](https://github.com/sonopon/nayami/blob/master/app/assets/images/ER%E5%9B%B3.png)
+![ER図](https://github.com/sonopon/nayami/blob/master/app/assets/images/README/ER%E5%9B%B3.png)
 
 # 環境・使用言語
 ## フロントエンド
@@ -62,7 +67,7 @@ https://nayami-1113.herokuapp.com/
 * 現在AWSにデプロイしている途中です
 
 ## インフラ構成図
-![インフラ構成図](https://github.com/sonopon/nayami/blob/master/app/assets/images/%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E6%A7%8B%E6%88%90%E5%9B%B3.png)
+![インフラ構成図](https://github.com/sonopon/nayami/blob/master/app/assets/images/README/%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E6%A7%8B%E6%88%90%E5%9B%B3.png)
 
 ## テスト
 * Rspec
